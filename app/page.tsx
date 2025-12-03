@@ -2,11 +2,23 @@
 
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
+import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const words = ['concreto', 'familias', 'empresas', 'acero', 'proyectos', 'estructuras'];
+  
+  const plugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false })
+  );
   
   // Estado para los contadores animados
   const [counters, setCounters] = useState({
@@ -149,19 +161,19 @@ export default function Home() {
         <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/55 to-black/80 z-10"></div>
         
         {/* Hero Content - Minimalist */}
-        <div className="container mx-auto px-6 text-center relative z-20 max-w-6xl">
+        <div className="container mx-auto px-4 sm:px-6 text-center relative z-20 max-w-6xl">
           
           {/* Simple Badge */}
-          <div className="mb-12">
-            <span className="px-6 py-2 border border-white/40 rounded-full text-white/90 text-sm font-medium tracking-wide backdrop-blur-sm">
+          <div className="mb-8 sm:mb-12">
+            <span className="px-4 sm:px-6 py-2 border border-white/40 rounded-full text-white/90 text-xs sm:text-sm font-medium tracking-wide backdrop-blur-sm">
               CONARTE • Puebla, México
             </span>
           </div>
           
           {/* Beautiful Title with Rotating Text */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl text-white mb-10 leading-[1.1] tracking-tight">
-            <span className="block text-7xl font-extrabold mb-2">Construimos sueños de</span>
-            <span className="block font-black text-4xl md:text-7xl lg:text-8xl drop-shadow-lg">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-8 sm:mb-10 leading-[1.1] tracking-tight">
+            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-2">Construimos sueños de</span>
+            <span className="block font-black text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl drop-shadow-lg">
               <span 
                 key={currentWordIndex}
                 className="rotating-word inline-block animate__animated animate__fadeInDown animate__duration-500ms text-transparent bg-clip-text bg-linear-to-r from-white via-red-200 to-white"
@@ -177,8 +189,8 @@ export default function Home() {
           </h1>
           
           {/* Poetic Description */}
-          <div className="mb-12 max-w-3xl mx-auto">
-            <p className="text-2xl md:text-3xl text-white mb-4 font-light leading-relaxed" style={{
+          <div className="mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
+            <p className="text-xl sm:text-2xl md:text-3xl text-white mb-4 font-light leading-relaxed" style={{
               textShadow: '0 0 25px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.8), 3px 3px 6px rgba(0,0,0,1)',
               backdropFilter: 'blur(3px)',
               WebkitBackdropFilter: 'blur(3px)'
@@ -190,7 +202,7 @@ export default function Home() {
                 textShadow: '0 0 25px rgba(0,0,0,1), 3px 3px 6px rgba(0,0,0,1)'
               }}>realidad</span>
             </p>
-            <p className="text-lg md:text-xl text-white/90 font-light leading-relaxed" style={{
+            <p className="text-base sm:text-lg md:text-xl text-white/90 font-light leading-relaxed" style={{
               textShadow: '0 0 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,1)',
               backdropFilter: 'blur(2px)',
               WebkitBackdropFilter: 'blur(2px)'
@@ -200,8 +212,8 @@ export default function Home() {
           </div>
           
           {/* Clean CTA */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="group relative bg-linear-to-r from-[#9A1D25] to-[#C02530] hover:from-[#7A1519] hover:to-[#9A1D25] text-white font-bold py-5 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg overflow-hidden">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
+            <button className="w-full sm:w-auto group relative bg-linear-to-r from-[#9A1D25] to-[#C02530] hover:from-[#7A1519] hover:to-[#9A1D25] text-white font-bold py-4 sm:py-5 px-8 sm:px-10 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg overflow-hidden">
               <span className="relative z-10 flex items-center gap-2">
                 Ver proyectos
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,7 +222,7 @@ export default function Home() {
               </span>
               <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
-            <button className="group relative border-2 border-white/80 hover:border-white bg-white/10 hover:bg-white/20 text-white font-bold py-5 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-md shadow-lg hover:shadow-2xl">
+            <button className="w-full sm:w-auto group relative border-2 border-white/80 hover:border-white bg-white/10 hover:bg-white/20 text-white font-bold py-4 sm:py-5 px-8 sm:px-10 rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-md shadow-lg hover:shadow-2xl">
               <span className="flex items-center gap-2">
                 Contactar
                 <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -224,27 +236,27 @@ export default function Home() {
       </section>
 
       {/* Stats Section - ¿Por qué elegirnos? */}  
-      <section className="bg-white dark:bg-gray-900 py-20 max-w-7xl mx-auto stats-section">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16 animate__animated animate__fadeIn">
+      <section className="bg-white dark:bg-gray-900 py-12 sm:py-16 md:py-20 max-w-7xl mx-auto stats-section">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16 animate__animated animate__fadeIn">
             <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider">¿Por qué elegirnos?</span>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-4">Nuestra Experiencia</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-4">Nuestra Experiencia</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
               Con más de dos décadas de experiencia, ofrecemos soluciones innovadoras en construcción y desarrollo urbano, 
               respaldadas por un equipo multidisciplinario de profesionales comprometidos con la excelencia y la satisfacción de nuestros clientes.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Experiencia Comprobada */}
-            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInLeft">
-              <div className="flex justify-center mb-6">
+            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInLeft">
+              <div className="flex justify-center mb-4 sm:mb-6">
                 <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Experiencia Comprobada</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 text-center">Experiencia Comprobada</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 text-center">
                 Más de 24 años de experiencia en el sector de la construcción y desarrollo urbano desde el año 2000.
               </p>
               <div className="grid grid-cols-2 gap-4">
@@ -268,43 +280,43 @@ export default function Home() {
             </div>
 
             {/* Columna 2: Equipo Profesional y Certificaciones */}
-            <div className="space-y-8 animate__animated animate__fadeInUp">
+            <div className="space-y-6 sm:space-y-8 animate__animated animate__fadeInUp">
               {/* Equipo Profesional */}
-              <div className="bg-linear-to-br from-gray-50 to-amber-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 border border-gray-200 dark:border-gray-700">
-                <div className="flex justify-center mb-6">
+              <div className="bg-linear-to-br from-gray-50 to-amber-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700">
+                <div className="flex justify-center mb-4 sm:mb-6">
                   <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Equipo Profesional</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-center">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 text-center">Equipo Profesional</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 text-center">
                   Personal multidisciplinario especializado en arquitectura, ingeniería civil, diseño urbano y ecología.
                 </p>
               </div>
 
               {/* Certificaciones */}
-              <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 border border-gray-200 dark:border-gray-700">
-                <div className="flex justify-center mb-6">
+              <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700">
+                <div className="flex justify-center mb-4 sm:mb-6">
                   <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Certificaciones</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-center">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 text-center">Certificaciones</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 text-center">
                   Registro en el Padrón de Contratistas del Municipio de Puebla con múltiples especialidades autorizadas.
                 </p>
               </div>
             </div>
 
             {/* Servicios Integrales */}
-            <div className="bg-linear-to-br from-gray-50 to-stone-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInRight">
-              <div className="flex justify-center mb-6">
+            <div className="bg-linear-to-br from-gray-50 to-stone-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInRight">
+              <div className="flex justify-center mb-4 sm:mb-6">
                 <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Servicios Integrales</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 text-center">Servicios Integrales</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 text-center">
                 Ofrecemos soluciones completas para tu proyecto de construcción y desarrollo urbano.
               </p>
               <ul className="space-y-3">
@@ -344,116 +356,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section - Servicios Principales */}
-      <section className="bg-white dark:bg-gray-900 py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-4">Nuestros Servicios</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Transformamos tu visión en realidad con soluciones integrales de construcción y desarrollo urbano. Más de 24 años de experiencia nos respaldan para entregar proyectos de excelencia que superan expectativas.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Proyectos Arquitectónicos y Urbanos */}
-            <div className="group bg-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              <div className="flex justify-center mb-6">
-                <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Proyectos Arquitectónicos y Urbanos</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-center">
-                Diseño y desarrollo integral de espacios residenciales y comerciales
-              </p>
-            </div>
-
-            {/* Edificaciones */}
-            <div className="group bg-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              <div className="flex justify-center mb-6">
-                <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Edificaciones</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-center">
-                Construcción y mantenimiento de espacios residenciales y comerciales
-              </p>
-            </div>
-
-            {/* Obra Civil e Instalaciones */}
-            <div className="group bg-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              <div className="flex justify-center mb-6">
-                <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Obra Civil e Instalaciones</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-center">
-                Soluciones integrales en infraestructura e instalaciones especializadas
-              </p>
-            </div>
-
-            {/* Urbanización */}
-            <div className="group bg-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              <div className="flex justify-center mb-6">
-                <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Urbanización</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-center">
-                Desarrollo integral de infraestructura urbana y vialidades
-              </p>
-            </div>
-
-            {/* Estudios y Consultoría */}
-            <div className="group bg-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              <div className="flex justify-center mb-6">
-                <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Estudios y Consultoría</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-center">
-                Análisis especializado en impacto ambiental, vial y desarrollo urbano
-              </p>
-            </div>
-
-            {/* Supervisión y Asesoría */}
-            <div className="group bg-gray-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              <div className="flex justify-center mb-6">
-                <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">Supervisión y Asesoría</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-center">
-                Acompañamiento profesional en todas las fases de tu proyecto
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sticky Scroll Section - Nuestros Proyectos */}
+      {/* Sticky Scroll Section - Nuestros Servicios */}
       <section className="relative h-[600vh] bg-white dark:bg-gray-900" data-sticky-section>
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-4 sm:px-6">
+            {/* Título y subtítulo sticky */}
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-3 sm:mb-4">Nuestros Servicios</h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
+                Transformamos tu visión en realidad con soluciones integrales de construcción y desarrollo urbano. Más de 24 años de experiencia nos respaldan para entregar proyectos de excelencia que superan expectativas.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
               {/* Contenido que cambia */}
               <div className="space-y-6">
                 {activeSection === 0 && (
                   <div className="animate__animated animate__fadeIn">
-                    <div className="flex justify-center mb-8">
-                      <svg className="w-24 h-24 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <div className="flex justify-center mb-4 sm:mb-6">
+                      <svg className="w-12 h-12 sm:w-16 sm:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
                       </svg>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white text-center mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 dark:text-white text-center mb-3 sm:mb-4">
                       Proyectos Arquitectónicos y Urbanos
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-8">
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-4 sm:mb-6 px-4">
                       Diseño y desarrollo integral de espacios residenciales y comerciales
                     </p>
                     
@@ -461,11 +389,11 @@ export default function Home() {
                     <div className="bg-linear-to-br from-[#C1272D] to-[#8B1E2D] rounded-2xl p-8 text-white max-w-md mx-auto">
                       <h3 className="text-xl font-bold mb-6 text-center">Incluye:</h3>
                       <ul className="space-y-3">
-                        <li className="flex items-center gap-3">
-                          <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <li className="flex items-center gap-2 sm:gap-3">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Proyectos ejecutivos residenciales</span>
+                          <span className="text-sm sm:text-base">Proyectos ejecutivos residenciales</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -492,15 +420,15 @@ export default function Home() {
 
                 {activeSection === 1 && (
                   <div className="animate__animated animate__fadeIn">
-                    <div className="flex justify-center mb-8">
-                      <svg className="w-24 h-24 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <div className="flex justify-center mb-6">
+                      <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                       </svg>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white text-center mb-6">
+                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white text-center mb-4">
                       Edificaciones
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-8">
+                    <p className="text-base text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-6">
                       Construcción y mantenimiento de espacios residenciales y comerciales
                     </p>
                     
@@ -539,15 +467,15 @@ export default function Home() {
 
                 {activeSection === 2 && (
                   <div className="animate__animated animate__fadeIn">
-                    <div className="flex justify-center mb-8">
-                      <svg className="w-24 h-24 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <div className="flex justify-center mb-6">
+                      <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
                       </svg>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white text-center mb-6">
+                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white text-center mb-4">
                       Obra Civil e Instalaciones
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-8">
+                    <p className="text-base text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-6">
                       Soluciones integrales en infraestructura e instalaciones especializadas
                     </p>
                     
@@ -559,25 +487,25 @@ export default function Home() {
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Instalaciones hidráulicas</span>
+                          <span>Obra civil hidráulica y sanitaria</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Instalaciones eléctricas</span>
+                          <span>Instalaciones eléctricas media tensión</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Obras de drenaje</span>
+                          <span>Estructuras metálicas</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Infraestructura vial</span>
+                          <span>Instalaciones telefónicas y datos</span>
                         </li>
                       </ul>
                     </div>
@@ -586,15 +514,15 @@ export default function Home() {
 
                 {activeSection === 3 && (
                   <div className="animate__animated animate__fadeIn">
-                    <div className="flex justify-center mb-8">
-                      <svg className="w-24 h-24 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <div className="flex justify-center mb-6">
+                      <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
                       </svg>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white text-center mb-6">
+                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white text-center mb-4">
                       Urbanización
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-8">
+                    <p className="text-base text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-6">
                       Desarrollo integral de infraestructura urbana y vialidades
                     </p>
                     
@@ -606,25 +534,25 @@ export default function Home() {
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Pavimentación</span>
+                          <span>Terracerías y pavimentación</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Terracerías</span>
+                          <span>Banquetas y guarniciones</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Redes de agua potable</span>
+                          <span>Alumbrado público</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Electrificación</span>
+                          <span>Caminos rurales</span>
                         </li>
                       </ul>
                     </div>
@@ -633,15 +561,15 @@ export default function Home() {
 
                 {activeSection === 4 && (
                   <div className="animate__animated animate__fadeIn">
-                    <div className="flex justify-center mb-8">
-                      <svg className="w-24 h-24 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <div className="flex justify-center mb-6">
+                      <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                       </svg>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white text-center mb-6">
+                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white text-center mb-4">
                       Estudios y Consultoría
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-8">
+                    <p className="text-base text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-6">
                       Análisis especializado en impacto ambiental, vial y desarrollo urbano
                     </p>
                     
@@ -665,13 +593,13 @@ export default function Home() {
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Análisis de factibilidad</span>
+                          <span>Estudios de desarrollo urbano</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Desarrollo urbano sostenible</span>
+                          <span>Impacto urbano territorial</span>
                         </li>
                       </ul>
                     </div>
@@ -680,15 +608,15 @@ export default function Home() {
 
                 {activeSection === 5 && (
                   <div className="animate__animated animate__fadeIn">
-                    <div className="flex justify-center mb-8">
-                      <svg className="w-24 h-24 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <div className="flex justify-center mb-6">
+                      <svg className="w-16 h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                       </svg>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white text-center mb-6">
+                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white text-center mb-4">
                       Supervisión y Asesoría
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-8">
+                    <p className="text-base text-gray-600 dark:text-gray-300 text-center leading-relaxed mb-6">
                       Acompañamiento profesional en todas las fases de tu proyecto
                     </p>
                     
@@ -700,25 +628,25 @@ export default function Home() {
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Supervisión de obra</span>
+                          <span>Supervisión de obra civil</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Control de calidad</span>
+                          <span>Asesoría en planeación urbana</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Asesoría técnica</span>
+                          <span>Conservación del patrimonio edificado</span>
                         </li>
                         <li className="flex items-center gap-3">
                           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
-                          <span>Gestión de proyectos</span>
+                          <span>Topografía</span>
                         </li>
                       </ul>
                     </div>
@@ -732,11 +660,11 @@ export default function Home() {
                 <Image 
                   src={
                     activeSection === 0 ? "/images/productos/1.jpg" :
-                    activeSection === 1 ? "/images/edificaciones.jpg" :
-                    activeSection === 2 ? "/images/obra-civil.jpg" :
-                    activeSection === 3 ? "/images/urbanizacion.jpg" :
-                    activeSection === 4 ? "/images/estudios.jpg" :
-                    "/images/supervision.jpg"
+                    activeSection === 1 ? "/images/productos/2.jpg" :
+                    activeSection === 2 ? "/images/productos/3.avif" :
+                    activeSection === 3 ? "/images/productos/4.avif" :
+                    activeSection === 4 ? "/images/productos/5.jpg" :
+                    "/images/productos/6.jpg"
                   }
                   alt="Proyecto CONARTE"
                   fill
@@ -777,12 +705,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <button className="bg-[#9A1D25] hover:bg-[#7A1519] text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
-              Ver Todos los Proyectos
-            </button>
           </div>
         </div>
       </section>
@@ -890,76 +812,217 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Testimonial 1 */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="flex items-center mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
-                &quot;Excelente trabajo, cumplieron con los tiempos establecidos y la calidad de construcción superó nuestras expectativas. Muy profesionales.&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-linear-to-br from-[#9A1D25] to-[#C02530] rounded-full flex items-center justify-center text-white font-bold">
-                  JM
+          <Carousel
+            plugins={[plugin.current]}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent>
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                    &quot;Excelente trabajo, cumplieron con los tiempos establecidos y la calidad de construcción superó nuestras expectativas. Muy profesionales.&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-linear-to-br from-[#9A1D25] to-[#C02530] rounded-full flex items-center justify-center text-white font-bold">
+                      JM
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Juan Martínez</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Propietario de Casa</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white">Juan Martínez</h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Propietario de Casa</p>
-                </div>
-              </div>
-            </div>
+              </CarouselItem>
 
-            {/* Testimonial 2 */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="flex items-center mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
-                &quot;Construyeron nuestra plaza comercial con gran profesionalismo. El equipo estuvo siempre disponible y atento a nuestras necesidades.&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center text-white font-bold">
-                  ML
+              {/* Testimonial 2 */}
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                    &quot;Construyeron nuestra plaza comercial con gran profesionalismo. El equipo estuvo siempre disponible y atento a nuestras necesidades.&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center text-white font-bold">
+                      ML
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">María López</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Empresaria</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white">María López</h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Empresaria</p>
-                </div>
-              </div>
-            </div>
+              </CarouselItem>
 
-            {/* Testimonial 3 */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="flex items-center mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
-                &ldquo;El fraccionamiento quedó espectacular. Conarte manejó todo el proceso con transparencia y los resultados hablan por sí solos.&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-linear-to-br from-stone-500 to-stone-600 rounded-full flex items-center justify-center text-white font-bold">
-                  RG
+              {/* Testimonial 3 */}
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                    &quot;El fraccionamiento quedó espectacular. Conarte manejó todo el proceso con transparencia y los resultados hablan por sí solos.&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-linear-to-br from-stone-500 to-stone-600 rounded-full flex items-center justify-center text-white font-bold">
+                      RG
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Roberto García</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Desarrollador</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white">Roberto García</h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Desarrollador</p>
+              </CarouselItem>
+
+              {/* Testimonial 4 */}
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                    &quot;Supervisaron nuestra obra con excelencia. Su experiencia nos permitió evitar problemas y optimizar recursos. Totalmente recomendables.&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-linear-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                      AS
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Ana Sánchez</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Ingeniera Civil</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </CarouselItem>
+
+              {/* Testimonial 5 */}
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                    &quot;El proyecto de urbanización fue impecable. Desde la planificación hasta la entrega, todo fue manejado con profesionalismo absoluto.&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                      CF
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Carlos Fernández</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Director de Proyecto</p>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+
+              {/* Testimonial 6 */}
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                    &quot;Los estudios de impacto ambiental fueron muy completos. Su equipo técnico demostró un alto nivel de conocimiento y compromiso.&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-linear-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                      LR
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Laura Ramírez</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Consultora Ambiental</p>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+
+              {/* Testimonial 7 */}
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                    &quot;La remodelación de nuestras oficinas quedó perfecta. El acabado es de primer nivel y respetaron completamente nuestro presupuesto.&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-linear-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">
+                      DT
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Daniel Torres</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Gerente General</p>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+
+              {/* Testimonial 8 */}
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                  <div className="flex items-center mb-4">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                    &quot;Las instalaciones eléctricas fueron realizadas con los más altos estándares de seguridad. Un trabajo impecable y muy profesional.&quot;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-linear-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
+                      PM
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Patricia Morales</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Administradora</p>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </section>
 
@@ -1019,143 +1082,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Content Section */}
-      <div className="bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4 py-16">
-
-        {/* Comprehensive Services Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-[#9A1D25] to-[#7A1519] rounded-2xl mb-6">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H9m0 0H7m2 0v-5a2 2 0 012-2h2a2 2 0 012 2v5m-6 0h4" />
-              </svg>
-            </div>
-            <h2 className="text-4xl font-black text-gray-900 dark:text-white mb-4">Servicios Integrales</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Ofrecemos soluciones completas para tu proyecto de construcción y desarrollo urbano.
-            </p>
-          </div>
-          
-          <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 md:p-12">
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="shrink-0 w-8 h-8 bg-red-700 rounded-full flex items-center justify-center mt-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Proyectos arquitectónicos y urbanos</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Diseño integral desde la conceptualización hasta la ejecución de proyectos arquitectónicos y de planificación urbana.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="shrink-0 w-8 h-8 bg-red-700 rounded-full flex items-center justify-center mt-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Edificaciones residenciales y comerciales</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Construcción de viviendas, edificios residenciales y espacios comerciales con los más altos estándares de calidad.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="shrink-0 w-8 h-8 bg-red-700 rounded-full flex items-center justify-center mt-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Estudios de impacto ambiental y urbano</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Análisis especializado para garantizar el desarrollo sostenible y el cumplimiento de normativas ambientales.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="shrink-0 w-8 h-8 bg-red-700 rounded-full flex items-center justify-center mt-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Urbanización y pavimentación</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Desarrollo de infraestructura urbana incluyendo calles, banquetas, redes de servicios y espacios públicos.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="shrink-0 w-8 h-8 bg-red-700 rounded-full flex items-center justify-center mt-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Supervisión y consultoría especializada</h3>
-                  <p className="text-gray-600 dark:text-gray-300">Acompañamiento técnico profesional durante todas las fases del proyecto con supervisión continua.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Features Section */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <div className="w-12 h-12 bg-[#9A1D25]/10 dark:bg-[#9A1D25]/20 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-[#9A1D25] dark:text-[#9A1D25]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Construcción</h3>
-            <p className="text-gray-600 dark:text-gray-300">Ejecutamos proyectos de construcción con los más altos estándares de calidad, desde edificaciones residenciales hasta complejos comerciales.</p>
-          </div>
-
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-amber-700 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Desarrollo Urbano</h3>
-            <p className="text-gray-600 dark:text-gray-300">Planificamos y desarrollamos espacios urbanos integrales que mejoran la calidad de vida de las comunidades.</p>
-          </div>
-
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <div className="w-12 h-12 bg-stone-100 dark:bg-stone-700 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-stone-700 dark:text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Consultoría</h3>
-            <p className="text-gray-600 dark:text-gray-300">Brindamos asesoría especializada en proyectos de ingeniería, arquitectura y desarrollo urbano sostenible.</p>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center bg-linear-to-br from-[#9A1D25]/5 to-amber-50 dark:from-gray-800 dark:to-gray-700 p-12 rounded-2xl shadow-xl border border-[#9A1D25]/20 dark:border-gray-600">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-            ¿Listo para Construir tu Próximo Proyecto?
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Con más de 10 años de experiencia en Puebla, México, transformamos tus ideas en realidades arquitectónicas excepcionales. 
-            <span className="font-semibold text-[#9A1D25] dark:text-[#9A1D25]">Excelencia, Transparencia y Competitividad.</span>
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="bg-[#9A1D25] hover:bg-[#7A1519] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
-              Solicitar Cotización
-            </button>
-            <button className="border-2 border-[#9A1D25] text-[#9A1D25] hover:bg-[#9A1D25] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
-              Ver Proyectos
-            </button>
-          </div>
-        </div>
-        </div>
-      </div>
     </div>
   );
 }
