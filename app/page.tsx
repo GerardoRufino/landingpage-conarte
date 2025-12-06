@@ -1234,9 +1234,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 max-w-7xl mx-auto lg:max-w-5xl xl:max-w-3xl">
             {/* ISO 9001 */}
-            <div className="group relative">
+            <div className="group relative h-full">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
                   <div className="relative w-24 h-24 lg:w-20 lg:h-20 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
                     <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl lg:rounded-xl transition-opacity duration-500 group-hover:opacity-30"></div>
@@ -1257,12 +1257,12 @@ export default function Home() {
             </div>
 
             {/* ISO 14001 */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
-                <div className="mb-8 xl:mb-4 2xl:mb-8">
-                  <div className="relative w-24 h-24 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
-                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+            <div className="group relative h-full">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
+                  <div className="relative w-24 h-24 lg:w-20 lg:h-20 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl lg:rounded-xl transition-opacity duration-500 group-hover:opacity-30"></div>
                     <svg className="relative w-12 h-12 lg:w-10 lg:h-10 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 dark:text-[#A0876D text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -1280,22 +1280,22 @@ export default function Home() {
             </div>
 
             {/* ISO 45001 */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
-                <div className="mb-8 xl:mb-4 2xl:mb-8">
-                  <div className="relative w-24 h-24 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
-                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+            <div className="group relative h-full">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
+                  <div className="relative w-24 h-24 lg:w-20 lg:h-20 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl lg:rounded-xl transition-opacity duration-500 group-hover:opacity-30"></div>
                     <svg className="relative w-12 h-12 lg:w-10 lg:h-10 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center">
-                  <h3 className="text-2xl xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 xl:mb-2 2xl:mb-3">
+                  <h3 className="text-2xl lg:text-lg xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 lg:mb-2 xl:mb-2 2xl:mb-3">
                     ISO 45001:2018
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base xl:text-xs 2xl:text-base">
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base lg:text-sm xl:text-xs 2xl:text-base">
                     Seguridad y Salud Ocupacional en el trabajo
                   </p>
                 </div>
@@ -1303,22 +1303,22 @@ export default function Home() {
             </div>
 
             {/* LEED */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
-                <div className="mb-8 xl:mb-4 2xl:mb-8">
-                  <div className="relative w-24 h-24 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
-                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+            <div className="group relative h-full">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
+                  <div className="relative w-24 h-24 lg:w-20 lg:h-20 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl lg:rounded-xl transition-opacity duration-500 group-hover:opacity-30"></div>
                     <svg className="relative w-12 h-12 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center">
-                  <h3 className="text-2xl xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 xl:mb-2 2xl:mb-3">
+                  <h3 className="text-2xl lg:text-lg xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 lg:mb-2 xl:mb-2 2xl:mb-3">
                     LEED Certified
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base xl:text-xs 2xl:text-base">
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base lg:text-sm xl:text-xs 2xl:text-base">
                     Liderazgo en Construcción Sustentable
                   </p>
                 </div>
@@ -1326,22 +1326,22 @@ export default function Home() {
             </div>
 
             {/* NOM-001-SEDE */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
-                <div className="mb-8 xl:mb-4 2xl:mb-8">
-                  <div className="relative w-24 h-24 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
-                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+            <div className="group relative h-full">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
+                  <div className="relative w-24 h-24 lg:w-20 lg:h-20 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl lg:rounded-xl transition-opacity duration-500 group-hover:opacity-30"></div>
                     <svg className="relative w-12 h-12 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center">
-                  <h3 className="text-2xl xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 xl:mb-2 2xl:mb-3">
+                  <h3 className="text-2xl lg:text-lg xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 lg:mb-2 xl:mb-2 2xl:mb-3">
                     NOM-001-SEDE
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base xl:text-xs 2xl:text-base">
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base lg:text-sm xl:text-xs 2xl:text-base">
                     Normativa de Instalaciones Eléctricas
                   </p>
                 </div>
@@ -1349,22 +1349,22 @@ export default function Home() {
             </div>
 
             {/* CMIC */}
-            <div className="group relative">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
-                <div className="mb-8 xl:mb-4 2xl:mb-8">
-                  <div className="relative w-24 h-24 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
-                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
-                    <svg className="relative w-12 h-12 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="group relative h-full">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
+                  <div className="relative w-24 h-24 lg:w-20 lg:h-20 xl:w-16 xl:h-16 2xl:w-24 2xl:h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl lg:rounded-xl transition-opacity duration-500 group-hover:opacity-30"></div>
+                    <svg className="relative w-12 h-12 lg:w-10 lg:h-10 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center">
-                  <h3 className="text-2xl xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 xl:mb-2 2xl:mb-3">
+                  <h3 className="text-2xl lg:text-lg xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 lg:mb-2 xl:mb-2 2xl:mb-3">
                     CMIC
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base xl:text-xs 2xl:text-base">
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base lg:text-sm xl:text-xs 2xl:text-base">
                     Cámara Mexicana de la Industria
                   </p>
                 </div>
