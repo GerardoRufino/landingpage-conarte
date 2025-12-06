@@ -1348,6 +1348,8 @@ export default function Home() {
               </div>
             </div>
 
+            
+
             {/* CMIC */}
             <div className="group relative h-full">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
