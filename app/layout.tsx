@@ -4,6 +4,7 @@ import "./globals.css";
 import "animate.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import DevBreakpointIndicator from "../components/DevBreakpointIndicator";
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <DevBreakpointIndicator />
       </body>
     </html>
   );

@@ -1,8 +1,11 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import Autoplay from "embla-carousel-autoplay";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
+import type { Engine } from "tsparticles-engine";
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +18,10 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const words = ['concreto', 'familias', 'empresas', 'acero', 'proyectos', 'estructuras'];
+  
+  const particlesInit = useCallback(async (engine: Engine) => {
+    await loadSlim(engine);
+  }, []);
   
   const plugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: false })
@@ -141,7 +148,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section - Elegant & Clean */}
-      <section className="h-screen relative overflow-hidden flex items-center justify-center">
+      <section id="inicio" className="h-screen relative overflow-hidden flex items-center justify-center">
         {/* Background Video */}
         <video
           ref={videoRef}
@@ -236,11 +243,11 @@ export default function Home() {
       </section>
 
       {/* Stats Section - ¿Por qué elegirnos? */}  
-      <section className="bg-white dark:bg-gray-900 py-12 sm:py-16 md:py-20 max-w-7xl mx-auto stats-section">
+      <section id="nosotros" className="bg-white dark:bg-gray-900 py-12 sm:py-16 md:py-20 max-w-7xl mx-auto stats-section scroll-mt-16">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 animate__animated animate__fadeIn">
-            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider">¿Por qué elegirnos?</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-4">Nuestra Experiencia</h2>
+            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider px-4 py-2 rounded-full border-2 border-[#9A1D25]/70">¿Por qué elegirnos?</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-4 mb-4">Nuestra Experiencia</h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
               Con más de dos décadas de experiencia, ofrecemos soluciones innovadoras en construcción y desarrollo urbano, 
               respaldadas por un equipo multidisciplinario de profesionales comprometidos con la excelencia y la satisfacción de nuestros clientes.
@@ -357,12 +364,15 @@ export default function Home() {
       </section>
 
       {/* Sticky Scroll Section - Nuestros Servicios */}
-      <section className="relative h-[600vh] bg-white dark:bg-gray-900" data-sticky-section>
+      <section id="servicios" className="relative h-[600vh] bg-white dark:bg-gray-900 scroll-mt-20" data-sticky-section>
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6">
             {/* Título y subtítulo sticky */}
             <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-3 sm:mb-4">Nuestros Servicios</h2>
+              <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider px-4 py-2 rounded-full border-2 border-[#9A1D25]/70">Nuestros Servicios</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-4 mb-4">
+                Lo que Hacemos
+              </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4">
                 Transformamos tu visión en realidad con soluciones integrales de construcción y desarrollo urbano. Más de 24 años de experiencia nos respaldan para entregar proyectos de excelencia que superan expectativas.
               </p>
@@ -679,11 +689,11 @@ export default function Home() {
       </section>
 
       {/* Projects Section - Proyectos Destacados */}
-      <section className="bg-gray-100 dark:bg-gray-800 py-20">
+      <section id="proyectos" className="bg-gray-100 dark:bg-gray-800 py-20 scroll-mt-16">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider">Portfolio</span>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-4">Proyectos Destacados</h2>
+            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider px-4 py-2 rounded-full border-2 border-[#9A1D25]/70">Portfolio</span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-4 mb-4">Proyectos Destacados</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Conoce algunos de los proyectos que hemos realizado con éxito
             </p>
@@ -692,16 +702,18 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <div key={item} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gray-300 dark:bg-gray-700 aspect-4/3">
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <Image
+                  src={`/images/proyectos/${item === 1 ? '1.webp' : `${item}.jpg`}`}
+                  alt={`Proyecto ${item}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
                   <div>
                     <h3 className="text-white font-bold text-xl mb-2">Proyecto {item}</h3>
                     <p className="text-white/90 text-sm">Construcción residencial en Puebla</p>
                   </div>
-                </div>
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  <svg className="w-20 h-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
                 </div>
               </div>
             ))}
@@ -713,8 +725,8 @@ export default function Home() {
       <section className="bg-white dark:bg-gray-900 py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider">Nuestro Proceso</span>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-4">Cómo Trabajamos</h2>
+            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider px-4 py-2 rounded-full border-2 border-[#9A1D25]/70">Nuestro Proceso</span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-4 mb-4">Cómo Trabajamos</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Un proceso claro y transparente para llevar tu proyecto del concepto a la realidad
             </p>
@@ -722,11 +734,44 @@ export default function Home() {
 
           <div className="relative">
             {/* Timeline Line */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-linear-to-b from-[#9A1D25] to-amber-500"></div>
+            <div 
+              className="hidden md:block absolute left-1/2 h-full opacity-0" 
+              style={{ 
+                width: '100px', 
+                marginLeft: '-50px',
+                animation: 'fadeInTimeline 0.5s ease-out 1.5s forwards'
+              }}
+            >
+              <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 1000">
+                <defs>
+                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#9A1D25" />
+                    <stop offset="100%" stopColor="#f59e0b" />
+                  </linearGradient>
+                </defs>
+                <path 
+                  d="M50,0 Q10,100 50,200 T50,400 T50,600 T50,800 T50,1000"
+                  stroke="url(#lineGradient)" 
+                  strokeWidth="4" 
+                  fill="none"
+                  strokeLinecap="round"
+                  style={{
+                    clipPath: 'inset(0 0 100% 0)',
+                    animation: 'lineDropDown 2s ease-out 2s forwards, snakeWave 6s ease-in-out 4s infinite'
+                  }}
+                />
+              </svg>
+            </div>
 
             <div className="space-y-12">
               {/* Step 1 */}
-              <div className="flex flex-col md:flex-row items-center gap-8">
+              <div 
+                className="flex flex-col md:flex-row items-center gap-8 opacity-0"
+                style={{
+                  animation: 'slideInFromLeft 0.8s ease-out forwards',
+                  animationDelay: '0.2s'
+                }}
+              >
                 <div className="md:w-1/2 md:text-right md:pr-12">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">1. Consulta Inicial</h3>
                   <p className="text-gray-600 dark:text-gray-300">
@@ -744,7 +789,13 @@ export default function Home() {
               </div>
 
               {/* Step 2 */}
-              <div className="flex flex-col md:flex-row items-center gap-8">
+              <div 
+                className="flex flex-col md:flex-row items-center gap-8 opacity-0"
+                style={{
+                  animation: 'slideInFromRight 0.8s ease-out forwards',
+                  animationDelay: '0.4s'
+                }}
+              >
                 <div className="md:w-1/2"></div>
                 <div className="relative z-10">
                   <div className="w-16 h-16 bg-linear-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
@@ -762,7 +813,13 @@ export default function Home() {
               </div>
 
               {/* Step 3 */}
-              <div className="flex flex-col md:flex-row items-center gap-8">
+              <div 
+                className="flex flex-col md:flex-row items-center gap-8 opacity-0"
+                style={{
+                  animation: 'slideInFromLeft 0.8s ease-out forwards',
+                  animationDelay: '0.6s'
+                }}
+              >
                 <div className="md:w-1/2 md:text-right md:pr-12">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">3. Construcción</h3>
                   <p className="text-gray-600 dark:text-gray-300">
@@ -780,7 +837,13 @@ export default function Home() {
               </div>
 
               {/* Step 4 */}
-              <div className="flex flex-col md:flex-row items-center gap-8">
+              <div 
+                className="flex flex-col md:flex-row items-center gap-8 opacity-0"
+                style={{
+                  animation: 'slideInFromRight 0.8s ease-out forwards',
+                  animationDelay: '0.8s'
+                }}
+              >
                 <div className="md:w-1/2"></div>
                 <div className="relative z-10">
                   <div className="w-16 h-16 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
@@ -802,11 +865,17 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 py-20">
-        <div className="container mx-auto px-6">
+      <section id="testimonios" className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 py-20 relative overflow-hidden scroll-mt-20">
+        {/* Decorative Background */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#9A1D25] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider">Testimonios</span>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-4">Lo Que Dicen Nuestros Clientes</h2>
+            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider px-4 py-2 rounded-full border-2 border-[#9A1D25]/70">Testimonios</span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-4 mb-4">Lo Que Dicen Nuestros Clientes</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               La satisfacción de nuestros clientes es nuestro mayor logro
             </p>
@@ -822,24 +891,41 @@ export default function Home() {
           >
             <CarouselContent>
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
-                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-[#9A1D25] overflow-hidden">
+                  {/* Decorative corner */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-[#9A1D25]/10 to-transparent rounded-bl-full"></div>
+                  
+                  {/* Quote icon */}
+                  <div className="absolute top-6 right-6 text-[#9A1D25]/10 group-hover:text-[#9A1D25]/20 transition-colors">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
+
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                  
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-base relative z-10">
                     &quot;Excelente trabajo, cumplieron con los tiempos establecidos y la calidad de construcción superó nuestras expectativas. Muy profesionales.&quot;
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-linear-to-br from-[#9A1D25] to-[#C02530] rounded-full flex items-center justify-center text-white font-bold">
-                      JM
+                  
+                  <div className="flex items-center gap-4 mt-auto">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-[#9A1D25]">
+                      <Image
+                        src="/images/testimonios/h.png"
+                        alt="Juan Martínez"
+                        fill
+                        className="object-cover object-top"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Juan Martínez</h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Propietario de Casa</p>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">Juan Martínez</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Propietario de Casa</p>
                     </div>
                   </div>
                 </div>
@@ -847,24 +933,39 @@ export default function Home() {
 
               {/* Testimonial 2 */}
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
-                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-amber-500 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-amber-500/10 to-transparent rounded-bl-full"></div>
+                  
+                  <div className="absolute top-6 right-6 text-amber-500/10 group-hover:text-amber-500/20 transition-colors">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
+
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                  
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-base relative z-10">
                     &quot;Construyeron nuestra plaza comercial con gran profesionalismo. El equipo estuvo siempre disponible y atento a nuestras necesidades.&quot;
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-linear-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center text-white font-bold">
-                      ML
+                  
+                  <div className="flex items-center gap-4 mt-auto">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-amber-500">
+                      <Image
+                        src="/images/testimonios/m.webp"
+                        alt="María López"
+                        fill
+                        className="object-cover object-top"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">María López</h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Empresaria</p>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">María López</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Empresaria</p>
                     </div>
                   </div>
                 </div>
@@ -872,24 +973,39 @@ export default function Home() {
 
               {/* Testimonial 3 */}
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
-                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-stone-500 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-stone-500/10 to-transparent rounded-bl-full"></div>
+                  
+                  <div className="absolute top-6 right-6 text-stone-500/10 group-hover:text-stone-500/20 transition-colors">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
+
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                  
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-base relative z-10">
                     &quot;El fraccionamiento quedó espectacular. Conarte manejó todo el proceso con transparencia y los resultados hablan por sí solos.&quot;
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-linear-to-br from-stone-500 to-stone-600 rounded-full flex items-center justify-center text-white font-bold">
-                      RG
+                  
+                  <div className="flex items-center gap-4 mt-auto">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-stone-500">
+                      <Image
+                        src="/images/testimonios/h.png"
+                        alt="Roberto García"
+                        fill
+                        className="object-cover object-top"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Roberto García</h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Desarrollador</p>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">Roberto García</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Desarrollador</p>
                     </div>
                   </div>
                 </div>
@@ -897,24 +1013,39 @@ export default function Home() {
 
               {/* Testimonial 4 */}
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
-                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-blue-500 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-blue-500/10 to-transparent rounded-bl-full"></div>
+                  
+                  <div className="absolute top-6 right-6 text-blue-500/10 group-hover:text-blue-500/20 transition-colors">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
+
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                  
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-base relative z-10">
                     &quot;Supervisaron nuestra obra con excelencia. Su experiencia nos permitió evitar problemas y optimizar recursos. Totalmente recomendables.&quot;
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-linear-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                      AS
+                  
+                  <div className="flex items-center gap-4 mt-auto">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-blue-500">
+                      <Image
+                        src="/images/testimonios/m.webp"
+                        alt="Ana Sánchez"
+                        fill
+                        className="object-cover object-top"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Ana Sánchez</h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Ingeniera Civil</p>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">Ana Sánchez</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Ingeniera Civil</p>
                     </div>
                   </div>
                 </div>
@@ -922,24 +1053,39 @@ export default function Home() {
 
               {/* Testimonial 5 */}
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
-                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-green-500 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-green-500/10 to-transparent rounded-bl-full"></div>
+                  
+                  <div className="absolute top-6 right-6 text-green-500/10 group-hover:text-green-500/20 transition-colors">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
+
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                  
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-base relative z-10">
                     &quot;El proyecto de urbanización fue impecable. Desde la planificación hasta la entrega, todo fue manejado con profesionalismo absoluto.&quot;
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">
-                      CF
+                  
+                  <div className="flex items-center gap-4 mt-auto">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-green-500">
+                      <Image
+                        src="/images/testimonios/h.png"
+                        alt="Carlos Fernández"
+                        fill
+                        className="object-cover object-top"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Carlos Fernández</h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Director de Proyecto</p>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">Carlos Fernández</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Director de Proyecto</p>
                     </div>
                   </div>
                 </div>
@@ -947,24 +1093,39 @@ export default function Home() {
 
               {/* Testimonial 6 */}
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
-                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-purple-500 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-purple-500/10 to-transparent rounded-bl-full"></div>
+                  
+                  <div className="absolute top-6 right-6 text-purple-500/10 group-hover:text-purple-500/20 transition-colors">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
+
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                  
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-base relative z-10">
                     &quot;Los estudios de impacto ambiental fueron muy completos. Su equipo técnico demostró un alto nivel de conocimiento y compromiso.&quot;
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-linear-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                      LR
+                  
+                  <div className="flex items-center gap-4 mt-auto">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-purple-500">
+                      <Image
+                        src="/images/testimonios/m.webp"
+                        alt="Laura Ramírez"
+                        fill
+                        className="object-cover object-top"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Laura Ramírez</h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Consultora Ambiental</p>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">Laura Ramírez</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Consultora Ambiental</p>
                     </div>
                   </div>
                 </div>
@@ -972,24 +1133,39 @@ export default function Home() {
 
               {/* Testimonial 7 */}
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
-                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-pink-500 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-pink-500/10 to-transparent rounded-bl-full"></div>
+                  
+                  <div className="absolute top-6 right-6 text-pink-500/10 group-hover:text-pink-500/20 transition-colors">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
+
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                  
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-base relative z-10">
                     &quot;La remodelación de nuestras oficinas quedó perfecta. El acabado es de primer nivel y respetaron completamente nuestro presupuesto.&quot;
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-linear-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">
-                      DT
+                  
+                  <div className="flex items-center gap-4 mt-auto">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-pink-500">
+                      <Image
+                        src="/images/testimonios/h.png"
+                        alt="Daniel Torres"
+                        fill
+                        className="object-cover object-top"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Daniel Torres</h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Gerente General</p>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">Daniel Torres</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Gerente General</p>
                     </div>
                   </div>
                 </div>
@@ -997,24 +1173,39 @@ export default function Home() {
 
               {/* Testimonial 8 */}
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3">
-                <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-indigo-500 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-indigo-500/10 to-transparent rounded-bl-full"></div>
+                  
+                  <div className="absolute top-6 right-6 text-indigo-500/10 group-hover:text-indigo-500/20 transition-colors">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
+
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 italic">
+                  
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed text-base relative z-10">
                     &quot;Las instalaciones eléctricas fueron realizadas con los más altos estándares de seguridad. Un trabajo impecable y muy profesional.&quot;
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-linear-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
-                      PM
+                  
+                  <div className="flex items-center gap-4 mt-auto">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-indigo-500">
+                      <Image
+                        src="/images/testimonios/m.webp"
+                        alt="Patricia Morales"
+                        fill
+                        className="object-cover object-top"
+                      />
                     </div>
                     <div>
-                      <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Patricia Morales</h4>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Administradora</p>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">Patricia Morales</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Administradora</p>
                     </div>
                   </div>
                 </div>
@@ -1027,34 +1218,372 @@ export default function Home() {
       </section>
 
       {/* Certifications Section */}
-      <section className="bg-white dark:bg-gray-900 py-20">
-        <div className="container mx-auto px-6">
+      <section id="certificaciones" className="bg-white dark:bg-gray-900 py-24 relative overflow-hidden scroll-mt-20">
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider">Confianza y Calidad</span>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-2 mb-4">Certificaciones y Reconocimientos</h2>
+            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider px-4 py-2 rounded-full border-2 border-[#9A1D25]/20">Confianza y Calidad</span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-4 mb-4">
+              Certificaciones y
+              <br />
+              <span className="text-[#9A1D25] text-3xl md:text-5xl font-bold">Reconocimientos</span>
+            </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Respaldados por las certificaciones más importantes de la industria
+              Respaldados por los más altos estándares internacionales de la industria de construcción
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[1, 2, 3, 4].map((cert) => (
-              <div key={cert} className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 flex items-center justify-center hover:shadow-lg transition-all duration-300 aspect-square">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+            {/* ISO 9001 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
+                <div className="mb-8">
+                  <div className="relative w-24 h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+                    <svg className="relative w-12 h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                </div>
                 <div className="text-center">
-                  <svg className="w-16 h-16 mx-auto mb-4 text-[#9A1D25]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                  </svg>
-                  <p className="text-gray-600 dark:text-gray-300 font-semibold">Certificación {cert}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    ISO 9001:2015
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Sistema de Gestión de Calidad certificado internacionalmente
+                  </p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* ISO 14001 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
+                <div className="mb-8">
+                  <div className="relative w-24 h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+                    <svg className="relative w-12 h-12 dark:text-[#A0876D text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    ISO 14001:2015
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Gestión Ambiental y compromiso sustentable
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* ISO 45001 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
+                <div className="mb-8">
+                  <div className="relative w-24 h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+                    <svg className="relative w-12 h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    ISO 45001:2018
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Seguridad y Salud Ocupacional en el trabajo
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* LEED */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
+                <div className="mb-8">
+                  <div className="relative w-24 h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+                    <svg className="relative w-12 h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    LEED Certified
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Liderazgo en Construcción Sustentable
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* NOM-001-SEDE */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
+                <div className="mb-8">
+                  <div className="relative w-24 h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+                    <svg className="relative w-12 h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    NOM-001-SEDE
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Normativa de Instalaciones Eléctricas
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CMIC */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500">
+                <div className="mb-8">
+                  <div className="relative w-24 h-24 border-2 border-[#9A1D25] dark:border-[#8B7355]/60 group-hover:border-[#9A1D25] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 mx-auto">
+                    <div className="absolute inset-0 bg-[#8B7355] opacity-20 blur-xl rounded-2xl transition-opacity duration-500 group-hover:opacity-30"></div>
+                    <svg className="relative w-12 h-12 dark:text-[#A0876D] text-[#9A1D25] transition-colors duration-500 drop-shadow-[0_0_8px_rgba(139,115,85,0.6)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    CMIC
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Cámara Mexicana de la Industria
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Team Section */}
+      <section id="equipo" className="bg-white dark:bg-gray-900 pt-5 relative overflow-hidden mb-20 scroll-mt-28">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <span className="text-[#9A1D25] font-bold text-sm uppercase tracking-wider px-4 py-2 rounded-full border-2 border-[#9A1D25]/20">Nuestro Equipo</span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mt-4 mb-4">
+              Expertos en 
+              <br />
+              <span className="text-[#9A1D25] text-3xl md:text-5xl font-bold">Construcción</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Profesionales comprometidos con la excelencia y la innovación en cada proyecto
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl mx-auto auto-rows-fr">
+            {/* Team Member 1 */}
+            <div className="group relative h-full w-full max-w-xs lg:col-span-2">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6">
+                  <div className="w-32 h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    Urb. Liliana Olmos Cruz
+                  </h3>
+                  <p className="text-[#9A1D25] font-semibold mb-3">Dirección General</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    Especialista en planeación territorial y desarrollo urbano
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Member 2 */}
+            <div className="group relative h-full w-full max-w-xs lg:col-span-2">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6">
+                  <div className="w-32 h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    Ing. Antonio Carrera Morales
+                  </h3>
+                  <p className="text-[#9A1D25] font-semibold mb-3">Supervisor</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    Experto en supervisión y control de calidad en obra
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Member 3 */}
+            <div className="group relative h-full w-full max-w-xs lg:col-span-2">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6">
+                  <div className="w-32 h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    Arq. Andrés Claudio Ramos
+                  </h3>
+                  <p className="text-[#9A1D25] font-semibold mb-3">Director de Proyectos</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    Especialista en proyectos arquitectónicos
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Member 4 - Positioned between card 1 and 2 */}
+            <div className="group relative h-full w-full max-w-xs lg:col-start-2 lg:col-span-2 mx-auto">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6">
+                  <div className="w-32 h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    Luis Tochihuitl Rojas
+                  </h3>
+                  <p className="text-[#9A1D25] font-semibold mb-3">Gestor de Licencias</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    Gestor de licencias y permisos de construcción
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Member 5 - Positioned between card 2 and 3 */}
+            <div className="group relative h-full w-full max-w-xs lg:col-start-4 lg:col-span-2 mx-auto">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6">
+                  <div className="w-32 h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="text-center grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    Eugenio Gerardo Mendoza Gasca
+                  </h3>
+                  <p className="text-[#9A1D25] font-semibold mb-3">Director de Planeación</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    Dirección de planeación territorial y desarrollo urbano
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
       {/* Final CTA Section */}
-      <section className="bg-linear-to-br from-[#9A1D25] to-[#7A1519] py-20">
-        <div className="container mx-auto px-6 text-center">
+      <section id="contacto" className="relative bg-linear-to-br from-[#9A1D25] to-[#7A1519] py-20 overflow-hidden scroll-mt-20">
+        <Particles
+          id="tsparticles"
+          init={particlesInit}
+          options={{
+            fullScreen: false,
+            background: {
+              color: {
+                value: "transparent",
+              },
+            },
+            fpsLimit: 120,
+            interactivity: {
+              events: {
+                onHover: {
+                  enable: true,
+                  mode: "repulse",
+                },
+                resize: true,
+              },
+              modes: {
+                repulse: {
+                  distance: 100,
+                  duration: 0.4,
+                },
+              },
+            },
+            particles: {
+              color: {
+                value: "#ffffff",
+              },
+              links: {
+                enable: false,
+              },
+              move: {
+                direction: "none",
+                enable: true,
+                outModes: {
+                  default: "out",
+                },
+                random: true,
+                speed: 0.5,
+                straight: false,
+              },
+              number: {
+                density: {
+                  enable: true,
+                  area: 800,
+                },
+                value: 150,
+              },
+              opacity: {
+                value: { min: 0.1, max: 0.8 },
+                animation: {
+                  enable: true,
+                  speed: 1,
+                  minimumValue: 0.1,
+                  sync: false,
+                },
+              },
+              shape: {
+                type: "circle",
+              },
+              size: {
+                value: { min: 1, max: 4 },
+              },
+            },
+            detectRetina: true,
+          }}
+          className="absolute inset-0 z-0"
+        />
+        
+        <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
             ¿Listo para Comenzar tu Proyecto?
           </h2>
