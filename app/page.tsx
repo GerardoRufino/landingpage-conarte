@@ -172,14 +172,14 @@ export default function Home() {
           
           {/* Simple Badge */}
           <div className="mb-8 sm:mb-12 lg:mb-8">
-            <span className="px-4 sm:px-6 lg:px-2 xl:px-4 py-2 lg:py-0.5 xl:py-1.5 border border-white/40 rounded-full text-white/90 sm:text-sm lg:text-[10px] xl:text-xs font-medium tracking-wide backdrop-blur-sm">
+            <span className="px-3 2xl:px-4 lg:px-2 xl:px-4 py-2 lg:py-0.5 xl:py-1.5 border border-white/40 rounded-full text-white/90 text-xs lg:text-[10px] xl:text-xs 2xl:text-base  font-medium tracking-wide backdrop-blur-sm">
               CONARTE • Puebla, México
             </span>
           </div>
           
           {/* Beautiful Title with Rotating Text */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-6xl text-white mb-8 sm:mb-10 lg:mb-6 leading-[1.1] tracking-tight">
-            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-extrabold mb-2 lg:mb-1">Construimos sueños de</span>
+          <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-6xl text-white mb-8 sm:mb-10 lg:mb-6 leading-[1.1] tracking-tight">
+            <span className="block text-3xl sm:text-4xl md:text-6xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-extrabold mb-2 lg:mb-1">Construimos sueños de</span>
             <span className="block font-black text-3xl sm:text-4xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-8xl drop-shadow-lg">
               <span 
                 key={currentWordIndex}
@@ -196,7 +196,7 @@ export default function Home() {
           </h1>
           
           {/* Poetic Description */}
-          <div className="mb-8 sm:mb-12 lg:mb-8 max-w-3xl lg:max-w-xl mx-auto px-4">
+          <div className="mb-8 mt-16 lg:mt-0 sm:mb-12 lg:mb-8 max-w-3xl lg:max-w-xl mx-auto px-4">
             <p className="text-xl sm:text-2xl md:text-3xl lg:text-base xl:text-xl 2xl:text-3xl text-white mb-4 lg:mb-3 font-light leading-relaxed" style={{
               textShadow: '0 0 25px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.8), 3px 3px 6px rgba(0,0,0,1)',
               backdropFilter: 'blur(3px)',
@@ -245,78 +245,75 @@ export default function Home() {
       {/* Stats Section - ¿Por qué elegirnos? */}  
       <section id="nosotros" className="bg-white dark:bg-gray-900 py-12 sm:py-16 md:py-20 lg:py-6 max-w-7xl mx-auto stats-section scroll-mt-16">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-4 animate__animated animate__fadeIn">
-            <span className="text-[#9A1D25] font-bold text-sm lg:text-[8px] xl:text-xs uppercase tracking-wider px-4 lg:px-1.5 xl:px-3 py-2 lg:py-0.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">¿Por qué elegirnos?</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-xl xl:text-3xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-1.5 mb-4 lg:mb-1.5">Nuestra Experiencia</h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-xs text-gray-600 dark:text-gray-300 max-w-3xl lg:max-w-lg mx-auto px-4">
+          <div className="text-center mb-12 sm:mb-16 md:mb-12 lg:mb-4 animate__animated animate__fadeIn">
+            <span className="text-[#9A1D25] font-bold text-[10px] md:text-xs 2xl:text-sm lg:text-[8px] xl:text-xs uppercase tracking-wider px-4 lg:px-1.5 xl:px-3 py-2 lg:py-0.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">¿Por qué elegirnos?</span>
+            <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-xl xl:text-3xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 md:mt-3 lg:mt-1.5 mb-4 md:mb-3 lg:mb-1.5">Nuestra Experiencia</h2>
+            <p className="text-base sm:text-lg md:text-base lg:text-xs text-gray-600 dark:text-gray-300 max-w-3xl md:max-w-5xl lg:max-w-lg mx-auto px-4">
               Con más de dos décadas de experiencia, ofrecemos soluciones innovadoras en construcción y desarrollo urbano, 
               respaldadas por un equipo multidisciplinario de profesionales comprometidos con la excelencia y la satisfacción de nuestros clientes.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-2 xl:mx-32 lg:mx-40">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-6 lg:gap-2 md:mx-4 xl:mx-32 lg:mx-40">
             {/* Experiencia Comprobada */}
-            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl lg:rounded-md p-6 sm:p-8 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInLeft">
-              <div className="flex justify-center mb-4 sm:mb-6 lg:mb-1 xl:mb-2 2xl:mb-6">
-                <svg className="w-16 h-16 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInLeft md:order-1">
+              <div className="flex justify-center mb-4 sm:mb-6 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-6">
+                <svg className="w-16 h-16 md:w-12 md:h-12 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
               </div>
-              <h3 className="text-xl sm:text-2xl lg:text-xs xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 lg:mb-0.5 xl:mb-2 2xl:mb-4 text-center">Experiencia Comprobada</h3>
-              <p className="text-sm sm:text-base lg:text-[10px] xl:text-xs 2xl:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 lg:mb-1.5 xl:mb-3 2xl:mb-6 text-center">
+              <h3 className="text-xl sm:text-2xl md:text-lg lg:text-xs xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 md:mb-3 lg:mb-0.5 xl:mb-2 2xl:mb-4 text-center">Experiencia Comprobada</h3>
+              <p className="text-sm sm:text-base md:text-sm lg:text-[10px] xl:text-xs 2xl:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 md:mb-4 lg:mb-1.5 xl:mb-3 2xl:mb-6 text-center">
                 Más de 24 años de experiencia en el sector de la construcción y desarrollo urbano desde el año 2000.
               </p>
-              <div className="grid grid-cols-2 gap-4 lg:gap-1 xl:gap-2 2xl:gap-4">
-                <div className="bg-white dark:bg-gray-900 rounded-xl lg:rounded p-4 lg:p-1 xl:p-2 2xl:p-4 text-center">
-                  <div className="text-3xl lg:text-sm xl:text-xl 2xl:text-3xl font-black text-[#8B1E2D] mb-1 lg:mb-0">{counters.years}+</div>
-                  <div className="text-sm lg:text-[8px] xl:text-[10px] 2xl:text-sm text-gray-600 dark:text-gray-400">Años de experiencia</div>
+              <div className="grid grid-cols-2 gap-4 md:gap-3 lg:gap-1 xl:gap-2 2xl:gap-4">
+                <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-lg lg:rounded p-4 md:p-3 lg:p-1 xl:p-2 2xl:p-4 text-center">
+                  <div className="text-3xl md:text-2xl lg:text-sm xl:text-xl 2xl:text-3xl font-black text-[#8B1E2D] mb-1 lg:mb-0">{counters.years}+</div>
+                  <div className="text-sm md:text-xs lg:text-[8px] xl:text-[10px] 2xl:text-sm text-gray-600 dark:text-gray-400">Años de experiencia</div>
                 </div>
-                <div className="bg-white dark:bg-gray-900 rounded-xl lg:rounded p-4 lg:p-1 xl:p-2 2xl:p-4 text-center">
-                  <div className="text-3xl lg:text-sm xl:text-xl 2xl:text-3xl font-black text-[#8B1E2D] mb-1 lg:mb-0">{counters.projects}+</div>
-                  <div className="text-sm lg:text-[8px] xl:text-[10px] 2xl:text-sm text-gray-600 dark:text-gray-400">Proyectos realizados</div>
+                <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-lg lg:rounded p-4 md:p-3 lg:p-1 xl:p-2 2xl:p-4 text-center">
+                  <div className="text-3xl md:text-2xl lg:text-sm xl:text-xl 2xl:text-3xl font-black text-[#8B1E2D] mb-1 lg:mb-0">{counters.projects}+</div>
+                  <div className="text-sm md:text-xs lg:text-[8px] xl:text-[10px] 2xl:text-sm text-gray-600 dark:text-gray-400">Proyectos realizados</div>
                 </div>
-                <div className="bg-white dark:bg-gray-900 rounded-xl lg:rounded p-4 lg:p-1 xl:p-2 2xl:p-4 text-center">
-                  <div className="text-3xl lg:text-sm xl:text-xl 2xl:text-3xl font-black text-[#8B1E2D] mb-1 lg:mb-0">{counters.specialties}+</div>
-                  <div className="text-sm lg:text-[8px] xl:text-[10px] 2xl:text-sm text-gray-600 dark:text-gray-400">Especialidades</div>
+                <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-lg lg:rounded p-4 md:p-3 lg:p-1 xl:p-2 2xl:p-4 text-center">
+                  <div className="text-3xl md:text-2xl lg:text-sm xl:text-xl 2xl:text-3xl font-black text-[#8B1E2D] mb-1 lg:mb-0">{counters.specialties}+</div>
+                  <div className="text-sm md:text-xs lg:text-[8px] xl:text-[10px] 2xl:text-sm text-gray-600 dark:text-gray-400">Especialidades</div>
                 </div>
-                <div className="bg-white dark:bg-gray-900 rounded-xl lg:rounded p-4 lg:p-1 xl:p-2 2xl:p-4 text-center">
-                  <div className="text-3xl lg:text-sm xl:text-xl 2xl:text-3xl font-black text-[#8B1E2D] mb-1 lg:mb-0">{counters.satisfaction}%</div>
-                  <div className="text-sm lg:text-[8px] xl:text-[10px] 2xl:text-sm text-gray-600 dark:text-gray-400">Satisfacción</div>
+                <div className="bg-white dark:bg-gray-900 rounded-xl md:rounded-lg lg:rounded p-4 md:p-3 lg:p-1 xl:p-2 2xl:p-4 text-center">
+                  <div className="text-3xl md:text-2xl lg:text-sm xl:text-xl 2xl:text-3xl font-black text-[#8B1E2D] mb-1 lg:mb-0">{counters.satisfaction}%</div>
+                  <div className="text-sm md:text-xs lg:text-[8px] xl:text-[10px] 2xl:text-sm text-gray-600 dark:text-gray-400">Satisfacción</div>
                 </div>
               </div>
             </div>
 
-            {/* Columna 2: Equipo Profesional y Certificaciones */}
-            <div className="space-y-6 sm:space-y-8 lg:space-y-2 animate__animated animate__fadeInUp">
-              {/* Equipo Profesional */}
-              <div className="bg-linear-to-br from-gray-50 to-amber-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl lg:rounded-md p-6 sm:p-8 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700">
-                <div className="flex justify-center mb-4 sm:mb-6 lg:mb-1 xl:mb-2 2xl:mb-6">
-                  <svg className="w-16 h-16 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl sm:text-2xl lg:text-xs xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 lg:mb-0.5 xl:mb-2 2xl:mb-4 text-center">Equipo Profesional</h3>
-                <p className="text-sm sm:text-base lg:text-[10px] xl:text-xs 2xl:text-base text-gray-600 dark:text-gray-300 text-center">
-                  Personal multidisciplinario especializado en arquitectura, ingeniería civil, diseño urbano y ecología.
-                </p>
+            {/* Equipo Profesional */}
+            <div className="bg-linear-to-br from-gray-50 to-amber-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInUp md:order-3 lg:order-2">
+              <div className="flex justify-center mb-4 sm:mb-6 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-6">
+                <svg className="w-16 h-16 md:w-12 md:h-12 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                </svg>
               </div>
+              <h3 className="text-xl sm:text-2xl md:text-lg lg:text-xs xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 md:mb-3 lg:mb-0.5 xl:mb-2 2xl:mb-4 text-center">Equipo Profesional</h3>
+              <p className="text-sm sm:text-base md:text-sm lg:text-[10px] xl:text-xs 2xl:text-base text-gray-600 dark:text-gray-300 text-center">
+                Personal multidisciplinario especializado en arquitectura, ingeniería civil, diseño urbano y ecología.
+              </p>
+            </div>
 
-              {/* Certificaciones */}
-              <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl lg:rounded-md p-6 sm:p-8 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700">
-                <div className="flex justify-center mb-4 sm:mb-6 lg:mb-1 xl:mb-2 2xl:mb-6">
-                  <svg className="w-16 h-16 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl sm:text-2xl lg:text-xs xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 lg:mb-0.5 xl:mb-2 2xl:mb-4 text-center">Certificaciones</h3>
-                <p className="text-sm sm:text-base lg:text-[10px] xl:text-xs 2xl:text-base text-gray-600 dark:text-gray-300 text-center">
-                  Registro en el Padrón de Contratistas del Municipio de Puebla con múltiples especialidades autorizadas.
-                </p>
+            {/* Certificaciones */}
+            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInUp md:order-4 lg:order-3">
+              <div className="flex justify-center mb-4 sm:mb-6 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-6">
+                <svg className="w-16 h-16 md:w-12 md:h-12 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                </svg>
               </div>
+              <h3 className="text-xl sm:text-2xl md:text-lg lg:text-xs xl:text-base 2xl:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 md:mb-3 lg:mb-0.5 xl:mb-2 2xl:mb-4 text-center">Certificaciones</h3>
+              <p className="text-sm sm:text-base md:text-sm lg:text-[10px] xl:text-xs 2xl:text-base text-gray-600 dark:text-gray-300 text-center">
+                Registro en el Padrón de Contratistas del Municipio de Puebla con múltiples especialidades autorizadas.
+              </p>
             </div>
 
             {/* Servicios Integrales */}
-            <div className="bg-linear-to-br from-gray-50 to-stone-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl lg:rounded-md p-6 sm:p-8 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInRight">
+            <div className="bg-linear-to-br from-gray-50 to-stone-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInRight md:order-2 lg:order-4">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-1 xl:mb-2 2xl:mb-6">
                 <svg className="w-16 h-16 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
@@ -364,12 +361,12 @@ export default function Home() {
       </section>
 
       {/* Sticky Scroll Section - Nuestros Servicios */}
-      <section id="servicios" className="relative h-[300vh] bg-white dark:bg-gray-900 scroll-mt-20 lg:scroll-mt-12 xl:mx-32" data-sticky-section>
-        <div className="sticky top-0 h-screen flex items-center overflow-hidden pt-16 lg:pt-24">
+      <section id="servicios" className="relative lg:h-[300vh] bg-white dark:bg-gray-900 scroll-mt-20 lg:scroll-mt-12 xl:mx-32" data-sticky-section>
+        <div className="lg:sticky top-0 lg:h-screen flex items-center overflow-hidden pt-16 sm:pt-16 lg:pt-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-3">
             {/* Título y subtítulo sticky */}
             <div className="text-center mb-8 sm:mb-12 lg:mb-6 xl:mb-6">
-              <span className="text-[#9A1D25] font-bold text-sm lg:text-[8px] lg:px-3 lg:py-1.5 xl:text-xs uppercase tracking-wider px-4 xl:px-3 py-2 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Nuestros Servicios</span>
+              <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-[8px] lg:px-3 lg:py-1.5 xl:text-xs uppercase tracking-wider px-4 xl:px-3 py-2 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Nuestros Servicios</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-2">
                 Lo que Hacemos
               </h2>
@@ -378,7 +375,353 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-6 xl:gap-6 2xl:gap-12 items-center">
+            {/* Vista móvil y tablet - Tarjetas */}
+            <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6 pb-8">
+              {/* Tarjeta 1: Proyectos Arquitectónicos */}
+              <div className="bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl overflow-hidden border-2 border-[#9A1D25]/20">
+                <div className="relative h-48 overflow-hidden">
+                  <Image 
+                    src="/images/productos/1.jpg"
+                    alt="Proyectos Arquitectónicos"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-14 h-14 bg-linear-to-br from-[#C1272D] to-[#8B1E2D] rounded-full flex items-center justify-center shadow-lg -mt-10 relative z-10">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-2">
+                    Proyectos Arquitectónicos y Urbanos
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 text-center mb-4">
+                    Diseño y desarrollo integral de espacios residenciales y comerciales
+                  </p>
+                  <div className="bg-linear-to-br from-[#C1272D] to-[#8B1E2D] rounded-xl p-4 text-white">
+                    <h4 className="text-sm font-bold mb-3 text-center">Incluye:</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Proyectos ejecutivos residenciales</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Proyectos comerciales</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Diseño urbano y ambiental</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Planeación urbana</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tarjeta 2: Edificaciones */}
+              <div className="bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl overflow-hidden border-2 border-amber-500/20">
+                <div className="relative h-48 overflow-hidden">
+                  <Image 
+                    src="/images/productos/2.jpg"
+                    alt="Edificaciones"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-14 h-14 bg-linear-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg -mt-10 relative z-10">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-2">
+                    Edificaciones
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 text-center mb-4">
+                    Construcción y mantenimiento de espacios residenciales y comerciales
+                  </p>
+                  <div className="bg-linear-to-br from-amber-500 to-amber-600 rounded-xl p-4 text-white">
+                    <h4 className="text-sm font-bold mb-3 text-center">Incluye:</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Edificaciones residenciales</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Edificaciones comerciales</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Mantenimiento integral</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Remodelaciones</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tarjeta 3: Obra Civil */}
+              <div className="bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl overflow-hidden border-2 border-stone-500/20">
+                <div className="relative h-48 overflow-hidden">
+                  <Image 
+                    src="/images/productos/3.avif"
+                    alt="Obra Civil"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-14 h-14 bg-linear-to-br from-stone-500 to-stone-600 rounded-full flex items-center justify-center shadow-lg -mt-10 relative z-10">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-2">
+                    Obra Civil e Instalaciones
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 text-center mb-4">
+                    Soluciones integrales en infraestructura e instalaciones especializadas
+                  </p>
+                  <div className="bg-linear-to-br from-stone-500 to-stone-600 rounded-xl p-4 text-white">
+                    <h4 className="text-sm font-bold mb-3 text-center">Incluye:</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Obra civil hidráulica y sanitaria</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Instalaciones eléctricas media tensión</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Estructuras metálicas</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Instalaciones telefónicas y datos</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tarjeta 4: Urbanización */}
+              <div className="bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl overflow-hidden border-2 border-blue-500/20">
+                <div className="relative h-48 overflow-hidden">
+                  <Image 
+                    src="/images/productos/4.avif"
+                    alt="Urbanización"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-14 h-14 bg-linear-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg -mt-10 relative z-10">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-2">
+                    Urbanización
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 text-center mb-4">
+                    Desarrollo integral de infraestructura urbana y vialidades
+                  </p>
+                  <div className="bg-linear-to-br from-blue-500 to-blue-600 rounded-xl p-4 text-white">
+                    <h4 className="text-sm font-bold mb-3 text-center">Incluye:</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Terracerías y pavimentación</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Banquetas y guarniciones</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Alumbrado público</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Caminos rurales</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tarjeta 5: Estudios y Consultoría */}
+              <div className="bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl overflow-hidden border-2 border-purple-500/20">
+                <div className="relative h-48 overflow-hidden">
+                  <Image 
+                    src="/images/productos/5.jpg"
+                    alt="Estudios y Consultoría"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-14 h-14 bg-linear-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg -mt-10 relative z-10">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-2">
+                    Estudios y Consultoría
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 text-center mb-4">
+                    Análisis especializado en impacto ambiental, vial y desarrollo urbano
+                  </p>
+                  <div className="bg-linear-to-br from-purple-500 to-purple-600 rounded-xl p-4 text-white">
+                    <h4 className="text-sm font-bold mb-3 text-center">Incluye:</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Estudios de impacto ambiental</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Estudios de impacto vial</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Estudios de desarrollo urbano</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Impacto urbano territorial</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tarjeta 6: Supervisión y Asesoría */}
+              <div className="bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl overflow-hidden border-2 border-green-500/20">
+                <div className="relative h-48 overflow-hidden">
+                  <Image 
+                    src="/images/productos/6.jpg"
+                    alt="Supervisión y Asesoría"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-14 h-14 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg -mt-10 relative z-10">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center mb-2">
+                    Supervisión y Asesoría
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 text-center mb-4">
+                    Acompañamiento profesional en todas las fases de tu proyecto
+                  </p>
+                  <div className="bg-linear-to-br from-green-500 to-green-600 rounded-xl p-4 text-white">
+                    <h4 className="text-sm font-bold mb-3 text-center">Incluye:</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Supervisión de obra civil</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Asesoría en planeación urbana</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Conservación del patrimonio edificado</span>
+                      </li>
+                      <li className="flex items-start gap-2 text-sm">
+                        <svg className="w-4 h-4 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <span>Topografía</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Vista desktop - Grid sticky (solo lg+) */}
+            <div className="hidden lg:grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-6 xl:gap-6 2xl:gap-12 items-center">
               {/* Contenido que cambia */}
               <div className="space-y-6 lg:space-y-4 xl:space-y-4 2xl:space-y-6">
                 {activeSection === 0 && (
@@ -692,8 +1035,8 @@ export default function Home() {
       <section id="proyectos" className="bg-gray-100 dark:bg-gray-800 py-20 scroll-mt-16">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm lg:text-[8px] xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Portfolio</span>
-            <h2 className="text-4xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">Proyectos Destacados</h2>
+            <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-[8px] xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Portfolio</span>
+            <h2 className="text-3xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">Proyectos Destacados</h2>
             <p className="text-xl lg:text-sm xl:text-sm 2xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl lg:max-w-2xl xl:max-w-2xl 2xl:max-w-3xl mx-auto">
               Conoce algunos de los proyectos que hemos realizado con éxito
             </p>
@@ -725,8 +1068,8 @@ export default function Home() {
       <section className="bg-white dark:bg-gray-900 py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Nuestro Proceso</span>
-            <h2 className="text-4xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">Cómo Trabajamos</h2>
+            <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Nuestro Proceso</span>
+            <h2 className="text-3xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">Cómo Trabajamos</h2>
             <p className="text-xl lg:text-sm xl:text-sm 2xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl lg:max-w-2xl xl:max-w-2xl 2xl:max-w-3xl mx-auto">
               Un proceso claro y transparente para llevar tu proyecto del concepto a la realidad
             </p>
@@ -778,14 +1121,14 @@ export default function Home() {
                     Nos reunimos contigo para entender tus necesidades, objetivos y presupuesto. Realizamos un análisis detallado del sitio y te brindamos asesoría profesional.
                   </p>
                 </div>
-                <div className="relative z-10">
+                <div className="relative z-10 hidden md:flex">
                   <div className="w-16 h-16 lg:w-14 lg:h-14 bg-linear-to-br from-[#9A1D25] to-[#C02530] rounded-full flex items-center justify-center shadow-lg">
                     <svg className="w-8 h-8 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                     </svg>
                   </div>
                 </div>
-                <div className="md:w-1/2"></div>
+                <div className="md:w-1/2 hidden md:block"></div>
               </div>
 
               {/* Step 2 */}
@@ -796,8 +1139,8 @@ export default function Home() {
                   animationDelay: '0.4s'
                 }}
               >
-                <div className="md:w-1/2"></div>
-                <div className="relative z-10">
+                <div className="md:w-1/2 hidden md:block"></div>
+                <div className="relative z-10 hidden md:flex">
                   <div className="w-16 h-16 lg:w-14 lg:h-14 bg-linear-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
                     <svg className="w-8 h-8 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -826,14 +1169,14 @@ export default function Home() {
                     Ejecutamos el proyecto con supervisión constante, utilizando materiales de primera calidad y cumpliendo con los estándares más altos de seguridad.
                   </p>
                 </div>
-                <div className="relative z-10">
+                <div className="relative z-10 hidden md:flex">
                   <div className="w-16 h-16 lg:w-14 lg:h-14 bg-linear-to-br from-stone-500 to-stone-600 rounded-full flex items-center justify-center shadow-lg">
                     <svg className="w-8 h-8 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
                   </div>
                 </div>
-                <div className="md:w-1/2"></div>
+                <div className="md:w-1/2 hidden md:block"></div>
               </div>
 
               {/* Step 4 */}
@@ -844,8 +1187,8 @@ export default function Home() {
                   animationDelay: '0.8s'
                 }}
               >
-                <div className="md:w-1/2"></div>
-                <div className="relative z-10">
+                <div className="md:w-1/2 hidden md:block"></div>
+                <div className="relative z-10 hidden md:flex">
                   <div className="w-16 h-16 lg:w-14 lg:h-14 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
                     <svg className="w-8 h-8 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -874,8 +1217,8 @@ export default function Home() {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Testimonios</span>
-            <h2 className="text-4xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">Lo Que Dicen Nuestros Clientes</h2>
+            <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-smlg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Testimonios</span>
+            <h2 className="text-3xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">Lo Que Dicen Nuestros Clientes</h2>
             <p className="text-xl lg:text-sm xl:text-sm 2xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl lg:max-w-2xl xl:max-w-2xl 2xl:max-w-3xl mx-auto">
               La satisfacción de nuestros clientes es nuestro mayor logro
             </p>
@@ -891,31 +1234,31 @@ export default function Home() {
           >
             <CarouselContent>
               <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/3">
-                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl lg:rounded-xl p-8 lg:p-5 xl:p-4 2xl:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-[#9A1D25] overflow-hidden">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 xl:p-4 2xl:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-[#9A1D25] overflow-hidden">
                   {/* Decorative corner */}
-                  <div className="absolute top-0 right-0 w-20 h-20 lg:w-16 lg:h-16 bg-linear-to-br from-[#9A1D25]/10 to-transparent rounded-bl-full"></div>
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-[#9A1D25]/10 to-transparent rounded-bl-full"></div>
                   
                   {/* Quote icon */}
-                  <div className="absolute top-6 right-6 lg:top-4 lg:right-4 xl:top-3 xl:right-3 2xl:top-6 2xl:right-6 text-[#9A1D25]/10 group-hover:text-[#9A1D25]/20 transition-colors">
-                    <svg className="w-12 h-12 lg:w-8 lg:h-8 xl:w-7 xl:h-7 2xl:w-12 2xl:h-12" fill="currentColor" viewBox="0 0 24 24">
+                  <div className="absolute top-6 right-6 xl:top-3 xl:right-3 2xl:top-6 2xl:right-6 text-[#9A1D25]/10 group-hover:text-[#9A1D25]/20 transition-colors">
+                    <svg className="w-12 h-12 xl:w-7 xl:h-7 2xl:w-12 2xl:h-12" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                     </svg>
                   </div>
 
-                  <div className="flex items-center mb-6 lg:mb-4 gap-1">
+                  <div className="flex items-center mb-6 gap-1">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <svg key={star} className="w-5 h-5 lg:w-4 lg:h-4 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={star} className="w-5 h-5 text-amber-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
                   
-                  <p className="text-gray-700 dark:text-gray-300 mb-8 lg:mb-5 xl:mb-4 2xl:mb-8 leading-relaxed text-base lg:text-sm xl:text-[11px] xl:leading-tight 2xl:text-base relative z-10">
+                  <p className="text-gray-700 dark:text-gray-300 mb-8 xl:mb-4 2xl:mb-8 leading-relaxed text-base xl:text-[11px] xl:leading-tight 2xl:text-base relative z-10">
                     &quot;Excelente trabajo, cumplieron con los tiempos establecidos y la calidad de construcción superó nuestras expectativas. Muy profesionales.&quot;
                   </p>
                   
-                  <div className="flex items-center gap-4 lg:gap-3 xl:gap-2 2xl:gap-4 mt-auto">
-                    <div className="relative w-14 h-14 lg:w-12 lg:h-12 xl:w-9 xl:h-9 2xl:w-14 2xl:h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-[#9A1D25]">
+                  <div className="flex items-center gap-4 xl:gap-2 2xl:gap-4 mt-auto">
+                    <div className="relative w-14 h-14 xl:w-9 xl:h-9 2xl:w-14 2xl:h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-[#9A1D25]">
                       <Image
                         src="/images/testimonios/h.png"
                         alt="Juan Martínez"
@@ -924,19 +1267,19 @@ export default function Home() {
                       />
                     </div>
                     <div>
-                      <h4 className="text-lg lg:text-base xl:text-sm 2xl:text-lg font-bold text-gray-900 dark:text-white">Juan Martínez</h4>
-                      <p className="text-sm lg:text-xs xl:text-[10px] 2xl:text-sm text-gray-500 dark:text-gray-400">Propietario de Casa</p>
+                      <h4 className="text-lg xl:text-sm 2xl:text-lg font-bold text-gray-900 dark:text-white">Juan Martínez</h4>
+                      <p className="text-sm xl:text-[10px] 2xl:text-sm text-gray-500 dark:text-gray-400">Propietario de Casa</p>
                     </div>
                   </div>
                 </div>
               </CarouselItem>
 
               {/* Testimonial 2 */}
-              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/3">
-                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl lg:rounded-xl p-8 lg:p-5 xl:p-4 2xl:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-amber-500 overflow-hidden">
-                  <div className="absolute top-0 right-0 w-20 h-20 lg:w-16 lg:h-16 bg-linear-to-br from-amber-500/10 to-transparent rounded-bl-full"></div>
+              <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/3 ">
+                <div className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 xl:p-4 2xl:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border-2 border-transparent hover:border-amber-500 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-amber-500/10 to-transparent rounded-bl-full"></div>
                   
-                  <div className="absolute top-6 right-6 lg:top-4 lg:right-4 xl:top-3 xl:right-3 2xl:top-6 2xl:right-6 text-amber-500/10 group-hover:text-amber-500/20 transition-colors">
+                  <div className="absolute top-6 right-6 xl:top-3 xl:right-3 2xl:top-6 2xl:right-6 text-amber-500/10 group-hover:text-amber-500/20 transition-colors">
                     <svg className="w-12 h-12 xl:w-7 xl:h-7 2xl:w-12 2xl:h-12" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                     </svg>
@@ -955,7 +1298,7 @@ export default function Home() {
                   </p>
                   
                   <div className="flex items-center gap-4 xl:gap-2 2xl:gap-4 mt-auto">
-                    <div className="relative w-14 h-14 lg:w-12 lg:h-12 xl:w-9 xl:h-9 2xl:w-14 2xl:h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-amber-500">
+                    <div className="relative w-14 h-14 xl:w-9 xl:h-9 2xl:w-14 2xl:h-14 rounded-full overflow-hidden shadow-lg ring-2 ring-amber-500">
                       <Image
                         src="/images/testimonios/m.webp"
                         alt="María López"
@@ -964,8 +1307,8 @@ export default function Home() {
                       />
                     </div>
                     <div>
-                      <h4 className="text-lg lg:text-base xl:text-sm 2xl:text-lg font-bold text-gray-900 dark:text-white">María López</h4>
-                      <p className="text-sm lg:text-xs xl:text-[10px] 2xl:text-sm text-gray-500 dark:text-gray-400">Empresaria</p>
+                      <h4 className="text-lg xl:text-sm 2xl:text-lg font-bold text-gray-900 dark:text-white">María López</h4>
+                      <p className="text-sm xl:text-[10px] 2xl:text-sm text-gray-500 dark:text-gray-400">Empresaria</p>
                     </div>
                   </div>
                 </div>
@@ -1221,14 +1564,14 @@ export default function Home() {
       <section id="certificaciones" className="bg-white dark:bg-gray-900 py-24 relative overflow-hidden scroll-mt-20 mx-auto">
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/20">Confianza y Calidad</span>
-            <h2 className="text-4xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">
+            <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/20">Confianza y Calidad</span>
+            <h2 className="text-3xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">
               Certificaciones y
               <br />
               <span className="text-[#9A1D25] text-3xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-bold">Reconocimientos</span>
             </h2>
             <p className="text-xl lg:text-sm xl:text-sm 2xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl lg:max-w-2xl xl:max-w-2xl 2xl:max-w-3xl mx-auto">
-              Respaldados por los más altos estándares <br /> internacionales de la industria de construcción
+              Respaldados por los más altos estándares <br className="hidden md:block" /> internacionales de la industria de construcción
             </p>
           </div>
 
@@ -1380,35 +1723,35 @@ export default function Home() {
       <section id="equipo" className="bg-white dark:bg-gray-900 pt-5 relative overflow-hidden mb-20 scroll-mt-28">
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <span className="text-[#9A1D25] font-bold text-sm xl:text-xs uppercase tracking-wider px-4 xl:px-3 py-2 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/20">Nuestro Equipo</span>
-            <h2 className="text-4xl md:text-5xl xl:text-3xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 xl:mt-3 mb-4 xl:mb-3">
-              Expertos en 
+            <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/20">Nuestro Equipo</span>
+            <h2 className="text-3xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 lg:mt-3 xl:mt-3 mb-4 lg:mb-3 xl:mb-3">
+              Expertos en
               <br />
-              <span className="text-[#9A1D25] text-3xl md:text-5xl xl:text-3xl 2xl:text-5xl font-bold">Construcción</span>
+              <span className="text-[#9A1D25] text-3xl md:text-5xl lg:text-2xl xl:text-2xl 2xl:text-5xl font-bold">Construcción</span>
             </h2>
-            <p className="text-xl xl:text-sm 2xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl xl:max-w-2xl 2xl:max-w-3xl mx-auto">
-              Profesionales comprometidos con la <br /> excelencia y la innovación en cada proyecto
+            <p className="text-xl lg:text-sm xl:text-sm 2xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl lg:max-w-2xl xl:max-w-2xl 2xl:max-w-3xl mx-auto">
+              Profesionales comprometidos con la <br className='hidden md:block' /> excelencia y la innovación en cada proyecto
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl xl:max-w-3xl mx-auto auto-rows-fr">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl xl:max-w-3xl mx-auto auto-rows-fr lg:mx-32">
             {/* Team Member 1 */}
-            <div className="group relative h-full w-full max-w-xs lg:col-span-2">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
-                <div className="mb-6 xl:mb-4 2xl:mb-6">
-                  <div className="w-32 h-32 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <svg className="w-16 h-16 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="group relative h-full w-full max-w-xs md:mx-auto">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+                  <div className="w-32 h-32 lg:w-16 lg:h-16 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 lg:w-8 lg:h-8 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center grow flex flex-col">
-                  <h3 className="text-xl xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 xl:mb-1 2xl:mb-2">
+                  <h3 className="text-xl lg:text-base xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 lg:mb-1 xl:mb-1 2xl:mb-2 lg:mx-2">
                     Urb. Liliana Olmos Cruz
                   </h3>
-                  <p className="text-[#9A1D25] font-semibold mb-3 xl:mb-2 2xl:mb-3 text-base xl:text-sm 2xl:text-base">Dirección General</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm xl:text-xs 2xl:text-sm leading-relaxed">
+                  <p className="text-[#9A1D25] font-semibold mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 text-base lg:text-sm xl:text-sm 2xl:text-base">Dirección General</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm lg:text-[12px] xl:text-xs 2xl:text-sm leading-relaxed">
                     Especialista en planeación territorial y desarrollo urbano
                   </p>
                 </div>
@@ -1416,22 +1759,22 @@ export default function Home() {
             </div>
 
             {/* Team Member 2 */}
-            <div className="group relative h-full w-full max-w-xs lg:col-span-2">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
-                <div className="mb-6 xl:mb-4 2xl:mb-6">
-                  <div className="w-32 h-32 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <svg className="w-16 h-16 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="group relative h-full w-full max-w-xs md:mx-auto">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+                  <div className="w-32 h-32 lg:w-16 lg:h-16 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 lg:w-8 lg:h-8 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center grow flex flex-col">
-                  <h3 className="text-xl xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 xl:mb-1 2xl:mb-2">
+                  <h3 className="text-xl lg:text-base xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 lg:mb-1 xl:mb-1 2xl:mb-2 lg:mx-2">
                     Ing. Antonio Carrera Morales
                   </h3>
-                  <p className="text-[#9A1D25] font-semibold mb-3 xl:mb-2 2xl:mb-3 text-base xl:text-sm 2xl:text-base">Supervisor</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm xl:text-xs 2xl:text-sm leading-relaxed">
+                  <p className="text-[#9A1D25] font-semibold mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 text-base lg:text-sm xl:text-sm 2xl:text-base">Supervisor</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm lg:text-[12px] xl:text-xs 2xl:text-sm leading-relaxed">
                     Experto en supervisión y control de calidad en obra
                   </p>
                 </div>
@@ -1439,68 +1782,68 @@ export default function Home() {
             </div>
 
             {/* Team Member 3 */}
-            <div className="group relative h-full w-full max-w-xs lg:col-span-2">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
-                <div className="mb-6 xl:mb-4 2xl:mb-6">
-                  <div className="w-32 h-32 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <svg className="w-16 h-16 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="group relative h-full w-full max-w-xs md:mx-auto">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+                  <div className="w-32 h-32 lg:w-16 lg:h-16 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 lg:w-8 lg:h-8 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center grow flex flex-col">
-                  <h3 className="text-xl xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 xl:mb-1 2xl:mb-2">
+                  <h3 className="text-xl lg:text-base xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 lg:mb-1 xl:mb-1 2xl:mb-2 lg:mx-2">
                     Arq. Andrés Claudio Ramos
                   </h3>
-                  <p className="text-[#9A1D25] font-semibold mb-3 xl:mb-2 2xl:mb-3 text-base xl:text-sm 2xl:text-base">Director de Proyectos</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm xl:text-xs 2xl:text-sm leading-relaxed">
+                  <p className="text-[#9A1D25] font-semibold mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 text-base lg:text-sm xl:text-sm 2xl:text-base">Director de Proyectos</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm lg:text-[12px] xl:text-xs 2xl:text-sm leading-relaxed">
                     Especialista en proyectos arquitectónicos
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Team Member 4 - Positioned between card 1 and 2 */}
-            <div className="group relative h-full w-full max-w-xs lg:col-start-2 lg:col-span-2 mx-auto">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
-                <div className="mb-6 xl:mb-4 2xl:mb-6">
-                  <div className="w-32 h-32 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <svg className="w-16 h-16 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Team Member 4 */}
+            <div className="group relative h-full w-full max-w-xs md:mx-auto">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+                  <div className="w-32 h-32 lg:w-16 lg:h-16 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 lg:w-8 lg:h-8 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center grow flex flex-col">
-                  <h3 className="text-xl xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 xl:mb-1 2xl:mb-2">
+                  <h3 className="text-xl lg:text-base xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 lg:mb-1 xl:mb-1 2xl:mb-2 lg:mx-2">
                     Luis Tochihuitl Rojas
                   </h3>
-                  <p className="text-[#9A1D25] font-semibold mb-3 xl:mb-2 2xl:mb-3 text-base xl:text-sm 2xl:text-base">Gestor de Licencias</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm xl:text-xs 2xl:text-sm leading-relaxed">
+                  <p className="text-[#9A1D25] font-semibold mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 text-base lg:text-sm xl:text-sm 2xl:text-base">Gestor de Licencias</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm lg:text-[12px] xl:text-xs 2xl:text-sm leading-relaxed">
                     Gestor de licencias y permisos de construcción
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Team Member 5 - Positioned between card 2 and 3 */}
-            <div className="group relative h-full w-full max-w-xs lg:col-start-4 lg:col-span-2 mx-auto">
-              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl transform group-hover:scale-105 transition-transform duration-500"></div>
-              <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-8 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
-                <div className="mb-6 xl:mb-4 2xl:mb-6">
-                  <div className="w-32 h-32 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <svg className="w-16 h-16 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Team Member 5 - Centered in third row */}
+            <div className="group relative h-full w-full max-w-xs md:col-span-2 md:col-start-1 lg:col-span-2 lg:col-start-2 mx-auto">
+              <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
+              <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
+                <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
+                  <div className="w-32 h-32 lg:w-16 lg:h-16 xl:w-20 xl:h-20 2xl:w-32 2xl:h-32 mx-auto bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-2xl lg:rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg className="w-16 h-16 lg:w-8 lg:h-8 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
                 </div>
                 <div className="text-center grow flex flex-col">
-                  <h3 className="text-xl xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 xl:mb-1 2xl:mb-2">
+                  <h3 className="text-xl lg:text-base xl:text-base 2xl:text-xl font-bold text-gray-900 dark:text-white mb-2 lg:mb-1 xl:mb-1 2xl:mb-2 lg:mx-2">
                     Eugenio Gerardo Mendoza Gasca
                   </h3>
-                  <p className="text-[#9A1D25] font-semibold mb-3 xl:mb-2 2xl:mb-3 text-base xl:text-sm 2xl:text-base">Director de Planeación</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm xl:text-xs 2xl:text-sm leading-relaxed">
+                  <p className="text-[#9A1D25] font-semibold mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 text-base lg:text-sm xl:text-sm 2xl:text-base">Director de Planeación</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm lg:text-[12px] xl:text-xs 2xl:text-sm leading-relaxed">
                     Dirección de planeación territorial y desarrollo urbano
                   </p>
                 </div>
@@ -1510,7 +1853,6 @@ export default function Home() {
         </div>
       </section>
 
-      
       {/* Final CTA Section */}
       <section id="contacto" className="relative bg-linear-to-br from-[#9A1D25] to-[#7A1519] py-20 overflow-hidden scroll-mt-20">
         <Particles
