@@ -39,6 +39,52 @@ export default function Home() {
   // Estado para el scroll sticky con cambio de contenido
   const [activeSection, setActiveSection] = useState(0);
 
+  // Efecto para animar elementos al hacer scroll
+  useEffect(() => {
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      
+      elements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Si el elemento está en el viewport
+        if (rect.top <= windowHeight * 0.85) {
+          element.classList.add('animate__animated');
+          const animations = element.getAttribute('data-animation') || 'animate__fadeInUp';
+          // Dividir las clases de animación si hay múltiples
+          animations.split(' ').forEach(cls => {
+            if (cls.trim()) {
+              element.classList.add(cls.trim());
+            }
+          });
+
+          // Si es la sección de Process, animar el timeline después
+          if (element.id === 'process-section') {
+            const timelineLine = document.getElementById('timeline-line');
+            if (timelineLine) {
+              setTimeout(() => {
+                timelineLine.style.animation = 'fadeInTimeline 0.5s ease-out forwards';
+                const timelinePath = timelineLine.querySelector('path');
+                if (timelinePath) {
+                  setTimeout(() => {
+                    (timelinePath as HTMLElement).style.animation = 'lineDropDown 2s ease-out forwards, snakeWave 6s ease-in-out 2s infinite';
+                  }, 500);
+                }
+              }, 1000); // Delay de 1s después de que termine la animación de la sección
+            }
+          }
+        }
+      });
+    };
+
+    // Ejecutar al cargar y al hacer scroll
+    animateOnScroll();
+    window.addEventListener('scroll', animateOnScroll);
+    
+    return () => window.removeEventListener('scroll', animateOnScroll);
+  }, []);
+
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
@@ -148,7 +194,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section - Elegant & Clean */}
-      <section id="inicio" className="h-screen relative overflow-hidden flex items-center justify-center">
+      <section id="inicio" className="h-screen relative overflow-hidden flex items-center justify-center animate-on-scroll" data-animation="animate__fadeIn">
         {/* Background Video */}
         <video
           ref={videoRef}
@@ -196,7 +242,7 @@ export default function Home() {
           </h1>
           
           {/* Poetic Description */}
-          <div className="mb-8 mt-16 lg:mt-0 sm:mb-12 lg:mb-8 max-w-3xl lg:max-w-xl mx-auto px-4">
+          <div className="mb-8 mt-16 lg:mt-0 sm:mb-12 lg:mb-8 max-w-3xl lg:max-w-xl 2xl:max-w-2xl mx-auto px-4">
             <p className="text-xl sm:text-2xl md:text-3xl lg:text-base xl:text-xl 2xl:text-3xl text-white mb-4 lg:mb-3 font-light leading-relaxed" style={{
               textShadow: '0 0 25px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.8), 3px 3px 6px rgba(0,0,0,1)',
               backdropFilter: 'blur(3px)',
@@ -209,7 +255,7 @@ export default function Home() {
                 textShadow: '0 0 25px rgba(0,0,0,1), 3px 3px 6px rgba(0,0,0,1)'
               }}>realidad</span>
             </p>
-            <p className="text-base sm:text-lg md:text-xl lg:text-sm text-white/90 font-light leading-relaxed" style={{
+            <p className="text-base 2xl:text-2xl sm:text-lg md:text-xl lg:text-sm text-white/90 font-light leading-relaxed" style={{
               textShadow: '0 0 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,1)',
               backdropFilter: 'blur(2px)',
               WebkitBackdropFilter: 'blur(2px)'
@@ -221,18 +267,18 @@ export default function Home() {
           {/* Clean CTA */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-2 justify-center px-4">
             <button className="w-full sm:w-auto group relative bg-linear-to-r from-[#9A1D25] to-[#C02530] hover:from-[#7A1519] hover:to-[#9A1D25] text-white font-bold py-4 sm:py-5 lg:py-2 xl:py-3 px-8 sm:px-10 lg:px-5 xl:px-7 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg overflow-hidden">
-              <span className="relative z-10 flex items-center gap-2 lg:gap-1 lg:text-xs">
+              <span className="relative z-10 flex items-center gap-2 lg:gap-1 lg:text-xs 2xl:text-lg">
                 Ver proyectos
-                <svg className="w-5 h-5 lg:w-3 lg:h-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 lg:w-3 lg:h-3 2xl:w-6 2xl:h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
               <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
             <button className="w-full sm:w-auto group relative border-2 border-white/80 hover:border-white bg-white/10 hover:bg-white/20 text-white font-bold py-4 sm:py-5 lg:py-2 xl:py-3 px-8 sm:px-10 lg:px-5 xl:px-7 rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-md shadow-lg hover:shadow-2xl">
-              <span className="flex items-center gap-2 lg:gap-1 lg:text-xs">
+              <span className="flex items-center gap-2 lg:gap-1 lg:text-xs 2xl:text-lg">
                 Contactar
-                <svg className="w-5 h-5 lg:w-3 lg:h-3 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 lg:w-3 lg:h-3 2xl:w-6 2xl:h-6 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </span>
@@ -243,12 +289,12 @@ export default function Home() {
       </section>
 
       {/* Stats Section - ¿Por qué elegirnos? */}  
-      <section id="nosotros" className="bg-white dark:bg-gray-900 py-12 sm:py-16 md:py-20 lg:py-6 max-w-7xl mx-auto stats-section scroll-mt-16">
+      <section id="nosotros" className="bg-white dark:bg-gray-900 py-12 sm:py-16 md:py-20 lg:py-6 max-w-7xl mx-auto stats-section scroll-mt-16 animate-on-scroll xl:mt-20" data-animation="animate__slideInUp">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12 sm:mb-16 md:mb-12 lg:mb-4 animate__animated animate__fadeIn">
             <span className="text-[#9A1D25] font-bold text-[10px] md:text-xs 2xl:text-sm lg:text-[8px] xl:text-xs uppercase tracking-wider px-4 lg:px-1.5 xl:px-3 py-2 lg:py-0.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">¿Por qué elegirnos?</span>
-            <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-xl xl:text-3xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 md:mt-3 lg:mt-1.5 mb-4 md:mb-3 lg:mb-1.5">Nuestra Experiencia</h2>
-            <p className="text-base sm:text-lg md:text-base lg:text-xs text-gray-600 dark:text-gray-300 max-w-3xl md:max-w-5xl lg:max-w-lg mx-auto px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-xl xl:text-3xl 2xl:text-5xl font-black text-gray-900 dark:text-white mt-4 md:mt-3 lg:mt-1.5 mb-4 md:mb-3 lg:mb-1.5 2xl:mt-5">Nuestra Experiencia</h2>
+            <p className="text-base sm:text-lg md:text-base lg:text-xs 2xl:text-xl text-gray-600 dark:text-gray-300 max-w-3xl md:max-w-5xl lg:max-w-lg 2xl:max-w-4xl 2xl:mt-5 2xl:pb-5 mx-auto px-4">
               Con más de dos décadas de experiencia, ofrecemos soluciones innovadoras en construcción y desarrollo urbano, 
               respaldadas por un equipo multidisciplinario de profesionales comprometidos con la excelencia y la satisfacción de nuestros clientes.
             </p>
@@ -256,7 +302,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-6 lg:gap-2 md:mx-4 xl:mx-32 lg:mx-40">
             {/* Experiencia Comprobada */}
-            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInLeft md:order-1">
+            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInLeft md:order-1 lg:row-span-2">
               <div className="flex justify-center mb-4 sm:mb-6 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-6">
                 <svg className="w-16 h-16 md:w-12 md:h-12 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -300,7 +346,7 @@ export default function Home() {
             </div>
 
             {/* Certificaciones */}
-            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInUp md:order-4 lg:order-3">
+            <div className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInUp md:order-4 lg:order-3 lg:col-start-2 lg:row-start-2">
               <div className="flex justify-center mb-4 sm:mb-6 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-6">
                 <svg className="w-16 h-16 md:w-12 md:h-12 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
@@ -313,7 +359,7 @@ export default function Home() {
             </div>
 
             {/* Servicios Integrales */}
-            <div className="bg-linear-to-br from-gray-50 to-stone-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInRight md:order-2 lg:order-4">
+            <div className="bg-linear-to-br from-gray-50 to-stone-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl sm:rounded-3xl md:rounded-2xl lg:rounded-md p-6 sm:p-8 md:p-5 lg:p-2 xl:p-4 2xl:p-8 border border-gray-200 dark:border-gray-700 animate__animated animate__fadeInRight md:order-2 lg:order-4 lg:row-span-2">
               <div className="flex justify-center mb-4 sm:mb-6 lg:mb-1 xl:mb-2 2xl:mb-6">
                 <svg className="w-16 h-16 lg:w-6 lg:h-6 xl:w-10 xl:h-10 2xl:w-16 2xl:h-16 text-[#8B1E2D]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
@@ -361,7 +407,7 @@ export default function Home() {
       </section>
 
       {/* Sticky Scroll Section - Nuestros Servicios */}
-      <section id="servicios" className="relative lg:h-[300vh] bg-white dark:bg-gray-900 scroll-mt-20 lg:scroll-mt-12 xl:mx-32" data-sticky-section>
+      <section id="servicios" className="relative lg:h-[300vh] bg-white dark:bg-gray-900 scroll-mt-20 lg:scroll-mt-12 xl:mx-32 animate-on-scroll" data-sticky-section data-animation="animate__fadeInRight">
         <div className="lg:sticky top-0 lg:h-screen flex items-center overflow-hidden pt-16 sm:pt-16 lg:pt-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-3">
             {/* Título y subtítulo sticky */}
@@ -1032,7 +1078,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section - Proyectos Destacados */}
-      <section id="proyectos" className="bg-gray-100 dark:bg-gray-800 py-20 scroll-mt-16">
+      <section id="proyectos" className="bg-gray-100 dark:bg-gray-800 py-20 scroll-mt-16 animate-on-scroll" data-animation="animate__fadeInUp">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-[8px] xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Portfolio</span>
@@ -1044,7 +1090,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6 lg:mx-16 xl:mx-32">
             {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="group relative overflow-hidden rounded-2xl lg:rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gray-300 dark:bg-gray-700 aspect-4/3">
+              <div key={item} className="group relative overflow-hidden rounded-2xl lg:rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gray-300 dark:bg-gray-700 aspect-4/3 animate-on-scroll" data-animation="animate__zoomIn">
                 <Image
                   src={`/images/proyectos/${item === 1 ? '1.webp' : `${item}.jpg`}`}
                   alt={`Proyecto ${item}`}
@@ -1065,7 +1111,7 @@ export default function Home() {
       </section>
 
       {/* Process Section - Proceso de Trabajo */}
-      <section className="bg-white dark:bg-gray-900 py-20">
+      <section id="process-section" className="bg-white dark:bg-gray-900 py-20 animate-on-scroll" data-animation="animate__fadeInLeft">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/70">Nuestro Proceso</span>
@@ -1078,11 +1124,11 @@ export default function Home() {
           <div className="relative">
             {/* Timeline Line */}
             <div 
+              id="timeline-line"
               className="hidden md:block absolute left-1/2 h-full opacity-0" 
               style={{ 
                 width: '100px', 
-                marginLeft: '-50px',
-                animation: 'fadeInTimeline 0.5s ease-out 1.5s forwards'
+                marginLeft: '-50px'
               }}
             >
               <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 1000">
@@ -1099,8 +1145,7 @@ export default function Home() {
                   fill="none"
                   strokeLinecap="round"
                   style={{
-                    clipPath: 'inset(0 0 100% 0)',
-                    animation: 'lineDropDown 2s ease-out 2s forwards, snakeWave 6s ease-in-out 4s infinite'
+                    clipPath: 'inset(0 0 100% 0)'
                   }}
                 />
               </svg>
@@ -1208,7 +1253,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonios" className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 py-20 relative overflow-hidden scroll-mt-20">
+      <section id="testimonios" className="bg-linear-to-br from-gray-50 to-red-50 dark:from-gray-800 dark:to-gray-700 py-20 relative overflow-hidden scroll-mt-20 animate-on-scroll" data-animation="animate__fadeInUp">
         {/* Decorative Background */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-72 h-72 bg-[#9A1D25] rounded-full blur-3xl"></div>
@@ -1561,7 +1606,7 @@ export default function Home() {
       </section>
 
       {/* Certifications Section */}
-      <section id="certificaciones" className="bg-white dark:bg-gray-900 py-24 relative overflow-hidden scroll-mt-20 mx-auto">
+      <section id="certificaciones" className="bg-white dark:bg-gray-900 py-24 relative overflow-hidden scroll-mt-20 mx-auto animate-on-scroll" data-animation="animate__fadeInRight">
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/20">Confianza y Calidad</span>
@@ -1575,9 +1620,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 max-w-7xl mx-auto lg:max-w-5xl xl:max-w-3xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 max-w-7xl mx-auto lg:max-w-5xl xl:max-w-3xl 2xl:max-w-5xl">
             {/* ISO 9001 */}
-            <div className="group relative h-full">
+            <div className="group relative h-full animate-on-scroll" data-animation="animate__flipInY">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
@@ -1600,7 +1645,7 @@ export default function Home() {
             </div>
 
             {/* ISO 14001 */}
-            <div className="group relative h-full">
+            <div className="group relative h-full animate-on-scroll" data-animation="animate__flipInY">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
@@ -1623,7 +1668,7 @@ export default function Home() {
             </div>
 
             {/* ISO 45001 */}
-            <div className="group relative h-full">
+            <div className="group relative h-full animate-on-scroll" data-animation="animate__flipInY">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
@@ -1646,7 +1691,7 @@ export default function Home() {
             </div>
 
             {/* LEED */}
-            <div className="group relative h-full">
+            <div className="group relative h-full animate-on-scroll" data-animation="animate__flipInY">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
@@ -1669,7 +1714,7 @@ export default function Home() {
             </div>
 
             {/* NOM-001-SEDE */}
-            <div className="group relative h-full">
+            <div className="group relative h-full animate-on-scroll" data-animation="animate__flipInY">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
@@ -1694,7 +1739,7 @@ export default function Home() {
             
 
             {/* CMIC */}
-            <div className="group relative h-full">
+            <div className="group relative h-full animate-on-scroll" data-animation="animate__flipInY">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-12 lg:p-8 xl:p-6 2xl:p-12 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-8 lg:mb-6 xl:mb-4 2xl:mb-8">
@@ -1720,7 +1765,7 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section id="equipo" className="bg-white dark:bg-gray-900 pt-5 relative overflow-hidden mb-20 scroll-mt-28">
+      <section id="equipo" className="bg-white dark:bg-gray-900 pt-5 relative overflow-hidden mb-20 scroll-mt-28 animate-on-scroll" data-animation="animate__fadeInLeft">
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <span className="text-[#9A1D25] font-bold text-[10px] 2xl:text-sm lg:text-xs xl:text-xs uppercase tracking-wider px-4 lg:px-3 xl:px-3 py-2 lg:py-1.5 xl:py-1.5 rounded-full border-2 border-[#9A1D25]/20">Nuestro Equipo</span>
@@ -1734,9 +1779,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl xl:max-w-3xl mx-auto auto-rows-fr lg:mx-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 max-w-6xl xl:max-w-3xl mx-auto auto-rows-fr lg:mx-32 xl:mx-auto">
             {/* Team Member 1 */}
-            <div className="group relative h-full w-full max-w-xs md:mx-auto">
+            <div className="group relative h-full w-full max-w-xs md:mx-auto lg:col-span-2 animate-on-scroll" data-animation="animate__bounceInLeft">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
@@ -1759,7 +1804,7 @@ export default function Home() {
             </div>
 
             {/* Team Member 2 */}
-            <div className="group relative h-full w-full max-w-xs md:mx-auto">
+            <div className="group relative h-full w-full max-w-xs md:mx-auto lg:col-span-2 animate-on-scroll" data-animation="animate__bounceInUp">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
@@ -1782,7 +1827,7 @@ export default function Home() {
             </div>
 
             {/* Team Member 3 */}
-            <div className="group relative h-full w-full max-w-xs md:mx-auto">
+            <div className="group relative h-full w-full max-w-xs md:mx-auto lg:col-span-2 animate-on-scroll" data-animation="animate__bounceInRight">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
@@ -1805,7 +1850,7 @@ export default function Home() {
             </div>
 
             {/* Team Member 4 */}
-            <div className="group relative h-full w-full max-w-xs md:mx-auto">
+            <div className="group relative h-full w-full max-w-xs md:mx-auto lg:col-span-2 lg:col-start-2 animate-on-scroll" data-animation="animate__bounceInLeft">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
@@ -1828,7 +1873,7 @@ export default function Home() {
             </div>
 
             {/* Team Member 5 - Centered in third row */}
-            <div className="group relative h-full w-full max-w-xs md:col-span-2 md:col-start-1 lg:col-span-2 lg:col-start-2 mx-auto">
+            <div className="group relative h-full w-full max-w-xs md:col-span-2 md:col-start-1 lg:col-span-2 mx-auto animate-on-scroll" data-animation="animate__bounceInUp">
               <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl lg:rounded-2xl transform group-hover:scale-105 transition-transform duration-500"></div>
               <div className="relative bg-white dark:bg-gray-900 rounded-3xl lg:rounded-2xl p-8 lg:p-4 xl:p-5 2xl:p-8 border border-gray-200 dark:border-gray-800 group-hover:border-[#9A1D25]/30 transition-all duration-500 h-full flex flex-col">
                 <div className="mb-6 lg:mb-3 xl:mb-4 2xl:mb-6">
@@ -1854,7 +1899,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section id="contacto" className="relative bg-linear-to-br from-[#9A1D25] to-[#7A1519] py-20 overflow-hidden scroll-mt-20">
+      <section id="contacto" className="relative bg-linear-to-br from-[#9A1D25] to-[#7A1519] py-20 overflow-hidden scroll-mt-20 animate-on-scroll" data-animation="animate__zoomIn">
         <Particles
           id="tsparticles"
           init={particlesInit}

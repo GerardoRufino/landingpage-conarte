@@ -186,3 +186,15 @@ body {
     d: path('M50,0 Q90,100 50,200 T50,400 T50,600 T50,800 T50,1000');
   }
 }
+
+/* Ocultar elementos antes de que se animen */
+.animate-on-scroll {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Mostrar elementos cuando se añade la animación */
+.animate-on-scroll.animate__animated {
+  opacity: 1;
+  visibility: visible;
+}
