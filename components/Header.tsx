@@ -107,7 +107,7 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="hidden">
             <button
               type="button"
               className={`transition-all duration-500 ${

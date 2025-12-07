@@ -42,10 +42,7 @@ export default function Home() {
     projects: 0,
     specialties: 0,
     satisfaction: 0
-  });
-  const [hasAnimated, setHasAnimated] = useState(false);
-  
-  // Estado para el scroll sticky con cambio de contenido
+  });  
   const [activeSection, setActiveSection] = useState(0);
 
   // Efecto para animar elementos al hacer scroll (optimizado)
@@ -126,11 +123,13 @@ export default function Home() {
   // Efecto para animar los contadores cuando la sección sea visible (optimizado)
   useEffect(() => {
     const intervals: NodeJS.Timeout[] = [];
+    let hasStarted = false;
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setHasAnimated(true);
+          if (entry.isIntersecting && !hasStarted) {
+            hasStarted = true;
             
             // Animar años (24)
             let yearsCount = 0;
@@ -176,20 +175,23 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
-    const statsSection = document.querySelector('.stats-section');
-    if (statsSection) {
-      observer.observe(statsSection);
-    }
+    // Usar setTimeout para asegurar que el DOM está listo
+    const timer = setTimeout(() => {
+      const statsSection = document.querySelector('.stats-section');
+      if (statsSection) {
+        observer.observe(statsSection);
+      }
+    }, 100);
 
     return () => {
+      clearTimeout(timer);
       intervals.forEach(interval => clearInterval(interval));
-      if (statsSection) observer.unobserve(statsSection);
       observer.disconnect();
     };
-  }, [hasAnimated]);
+  }, []);
 
   // Efecto para escuchar el scroll de la sección sticky (optimizado)
   useEffect(() => {
