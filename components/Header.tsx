@@ -29,6 +29,7 @@ export default function Header() {
               <Image 
                 src="/images/conarte-logo.png" 
                 alt="Conarte Logo" 
+                loading="eager"
                 width={120}
                 height={120}
                 className="object-contain lg:w-16 lg:h-16 xl:w-16 xl:h-16 2xl:w-[120px] 2xl:h-[120px]"

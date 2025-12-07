@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import Autoplay from "embla-carousel-autoplay";
 import Particles from "react-tsparticles";
@@ -14,10 +14,19 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+// Función debounce para optimizar scroll listeners
+const debounce = (func: () => void, wait: number) => {
+  let timeout: NodeJS.Timeout;
+  return () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(), wait);
+  };
+};
+
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const words = ['concreto', 'familias', 'empresas', 'acero', 'proyectos', 'estructuras'];
+  const words = useMemo(() => ['concreto', 'familias', 'empresas', 'acero', 'proyectos', 'estructuras'], []);
   
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
@@ -39,50 +48,64 @@ export default function Home() {
   // Estado para el scroll sticky con cambio de contenido
   const [activeSection, setActiveSection] = useState(0);
 
-  // Efecto para animar elementos al hacer scroll
+  // Efecto para animar elementos al hacer scroll (optimizado)
   useEffect(() => {
+    let ticking = false;
+    
     const animateOnScroll = () => {
-      const elements = document.querySelectorAll('.animate-on-scroll');
-      
-      elements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Si el elemento está en el viewport
-        if (rect.top <= windowHeight * 0.85) {
-          element.classList.add('animate__animated');
-          const animations = element.getAttribute('data-animation') || 'animate__fadeInUp';
-          // Dividir las clases de animación si hay múltiples
-          animations.split(' ').forEach(cls => {
-            if (cls.trim()) {
-              element.classList.add(cls.trim());
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const elements = document.querySelectorAll('.animate-on-scroll');
+          const windowHeight = window.innerHeight;
+          
+          elements.forEach((element) => {
+            if (element.classList.contains('animate__animated')) return; // Skip si ya está animado
+            
+            const rect = element.getBoundingClientRect();
+            
+            // Si el elemento está en el viewport
+            if (rect.top <= windowHeight * 0.85) {
+              element.classList.add('animate__animated');
+              const animations = element.getAttribute('data-animation') || 'animate__fadeInUp';
+              // Dividir las clases de animación si hay múltiples
+              animations.split(' ').forEach(cls => {
+                if (cls.trim()) {
+                  element.classList.add(cls.trim());
+                }
+              });
+
+              // Si es la sección de Process, animar el timeline después
+              if (element.id === 'process-section') {
+                const timelineLine = document.getElementById('timeline-line');
+                if (timelineLine) {
+                  setTimeout(() => {
+                    timelineLine.style.animation = 'fadeInTimeline 0.5s ease-out forwards';
+                    const timelinePath = timelineLine.querySelector('path');
+                    if (timelinePath) {
+                      setTimeout(() => {
+                        (timelinePath as unknown as HTMLElement).style.animation = 'lineDropDown 2s ease-out forwards, snakeWave 6s ease-in-out 2s infinite';
+                      }, 500);
+                    }
+                  }, 1000);
+                }
+              }
             }
           });
-
-          // Si es la sección de Process, animar el timeline después
-          if (element.id === 'process-section') {
-            const timelineLine = document.getElementById('timeline-line');
-            if (timelineLine) {
-              setTimeout(() => {
-                timelineLine.style.animation = 'fadeInTimeline 0.5s ease-out forwards';
-                const timelinePath = timelineLine.querySelector('path');
-                if (timelinePath) {
-                  setTimeout(() => {
-                    (timelinePath as HTMLElement).style.animation = 'lineDropDown 2s ease-out forwards, snakeWave 6s ease-in-out 2s infinite';
-                  }, 500);
-                }
-              }, 1000); // Delay de 1s después de que termine la animación de la sección
-            }
-          }
-        }
-      });
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    // Ejecutar al cargar y al hacer scroll
+    // Ejecutar al cargar
     animateOnScroll();
-    window.addEventListener('scroll', animateOnScroll);
     
-    return () => window.removeEventListener('scroll', animateOnScroll);
+    // Debounced scroll handler
+    const debouncedScroll = debounce(animateOnScroll, 50);
+    window.addEventListener('scroll', debouncedScroll, { passive: true });
+    
+    return () => window.removeEventListener('scroll', debouncedScroll);
   }, []);
 
   useEffect(() => {
@@ -94,24 +117,15 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Primero aplicar animación de salida
-      const currentElement = document.querySelector('.rotating-word');
-      if (currentElement) {
-        currentElement.classList.remove('animate__fadeInDown');
-        currentElement.classList.add('animate__fadeOutUp');
-        
-        // Después de la animación de salida, cambiar la palabra
-        setTimeout(() => {
-          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-        }, 400);
-      }
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
     }, 2500); // Cambia cada 2.5 segundos
 
     return () => clearInterval(interval);
   }, [words.length]);
 
-  // Efecto para animar los contadores cuando la sección sea visible
+  // Efecto para animar los contadores cuando la sección sea visible (optimizado)
   useEffect(() => {
+    const intervals: NodeJS.Timeout[] = [];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -125,6 +139,7 @@ export default function Home() {
               setCounters(prev => ({ ...prev, years: yearsCount }));
               if (yearsCount >= 24) clearInterval(yearsInterval);
             }, 50);
+            intervals.push(yearsInterval);
             
             // Animar proyectos (500)
             let projectsCount = 0;
@@ -136,6 +151,7 @@ export default function Home() {
                 clearInterval(projectsInterval);
               }
             }, 15);
+            intervals.push(projectsInterval);
             
             // Animar especialidades (15)
             let specialtiesCount = 0;
@@ -144,6 +160,7 @@ export default function Home() {
               setCounters(prev => ({ ...prev, specialties: specialtiesCount }));
               if (specialtiesCount >= 15) clearInterval(specialtiesInterval);
             }, 70);
+            intervals.push(specialtiesInterval);
             
             // Animar satisfacción (100)
             let satisfactionCount = 0;
@@ -155,6 +172,7 @@ export default function Home() {
                 clearInterval(satisfactionInterval);
               }
             }, 20);
+            intervals.push(satisfactionInterval);
           }
         });
       },
@@ -167,27 +185,41 @@ export default function Home() {
     }
 
     return () => {
+      intervals.forEach(interval => clearInterval(interval));
       if (statsSection) observer.unobserve(statsSection);
+      observer.disconnect();
     };
   }, [hasAnimated]);
 
-  // Efecto para escuchar el scroll de la sección sticky
+  // Efecto para escuchar el scroll de la sección sticky (optimizado)
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const section = document.querySelector('[data-sticky-section]');
-      if (!section) return;
-      
-      const rect = section.getBoundingClientRect();
-      const scrollProgress = -rect.top / (rect.height - window.innerHeight);
-      const newSection = Math.min(5, Math.max(0, Math.floor(scrollProgress * 6)));
-      
-      setActiveSection(newSection);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const section = document.querySelector('[data-sticky-section]');
+          if (!section) {
+            ticking = false;
+            return;
+          }
+          
+          const rect = section.getBoundingClientRect();
+          const scrollProgress = -rect.top / (rect.height - window.innerHeight);
+          const newSection = Math.min(5, Math.max(0, Math.floor(scrollProgress * 6)));
+          
+          setActiveSection(newSection);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const debouncedScroll = debounce(handleScroll, 30);
+    window.addEventListener('scroll', debouncedScroll, { passive: true });
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', debouncedScroll);
     };
   }, []);
 
@@ -203,7 +235,7 @@ export default function Home() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           style={{ filter: 'blur(2px)' }}
         >
           <source src="/video/hero.mp4" type="video/mp4" />
@@ -430,6 +462,7 @@ export default function Home() {
                     src="/images/productos/1.jpg"
                     alt="Proyectos Arquitectónicos"
                     fill
+                    loading="lazy"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
@@ -487,6 +520,7 @@ export default function Home() {
                     src="/images/productos/2.jpg"
                     alt="Edificaciones"
                     fill
+                    loading="lazy"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
@@ -544,6 +578,7 @@ export default function Home() {
                     src="/images/productos/3.avif"
                     alt="Obra Civil"
                     fill
+                    loading="lazy"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
@@ -601,6 +636,7 @@ export default function Home() {
                     src="/images/productos/4.avif"
                     alt="Urbanización"
                     fill
+                    loading="lazy"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
@@ -658,6 +694,7 @@ export default function Home() {
                     src="/images/productos/5.jpg"
                     alt="Estudios y Consultoría"
                     fill
+                    loading="lazy"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
@@ -715,6 +752,7 @@ export default function Home() {
                     src="/images/productos/6.jpg"
                     alt="Supervisión y Asesoría"
                     fill
+                    loading="lazy"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
@@ -1095,6 +1133,7 @@ export default function Home() {
                   src={`/images/proyectos/${item === 1 ? '1.webp' : `${item}.jpg`}`}
                   alt={`Proyecto ${item}`}
                   fill
+                  loading="lazy"
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
@@ -1308,6 +1347,7 @@ export default function Home() {
                         src="/images/testimonios/h.png"
                         alt="Juan Martínez"
                         fill
+                        loading="lazy"
                         className="object-cover object-top"
                       />
                     </div>
@@ -1348,6 +1388,7 @@ export default function Home() {
                         src="/images/testimonios/m.webp"
                         alt="María López"
                         fill
+                        loading="lazy"
                         className="object-cover object-top"
                       />
                     </div>
@@ -1388,6 +1429,7 @@ export default function Home() {
                         src="/images/testimonios/h.png"
                         alt="Roberto García"
                         fill
+                        loading="lazy"
                         className="object-cover object-top"
                       />
                     </div>
@@ -1428,6 +1470,7 @@ export default function Home() {
                         src="/images/testimonios/m.webp"
                         alt="Ana Sánchez"
                         fill
+                        loading="lazy"
                         className="object-cover object-top"
                       />
                     </div>
@@ -1468,6 +1511,7 @@ export default function Home() {
                         src="/images/testimonios/h.png"
                         alt="Carlos Fernández"
                         fill
+                        loading="lazy"
                         className="object-cover object-top"
                       />
                     </div>
@@ -1508,6 +1552,7 @@ export default function Home() {
                         src="/images/testimonios/m.webp"
                         alt="Laura Ramírez"
                         fill
+                        loading="lazy"
                         className="object-cover object-top"
                       />
                     </div>
@@ -1548,6 +1593,7 @@ export default function Home() {
                         src="/images/testimonios/h.png"
                         alt="Daniel Torres"
                         fill
+                        loading="lazy"
                         className="object-cover object-top"
                       />
                     </div>
@@ -1588,6 +1634,7 @@ export default function Home() {
                         src="/images/testimonios/m.webp"
                         alt="Patricia Morales"
                         fill
+                        loading="lazy"
                         className="object-cover object-top"
                       />
                     </div>
@@ -1899,7 +1946,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section id="contacto" className="relative bg-linear-to-br from-[#9A1D25] to-[#7A1519] py-20 overflow-hidden scroll-mt-20 animate-on-scroll" data-animation="animate__zoomIn">
+      <section id="contacto" className="relative bg-linear-to-br from-[#9A1D25] to-[#7A1519] py-12 sm:py-16 md:py-20 lg:py-24 2xl:py-20 overflow-hidden scroll-mt-20 animate-on-scroll" data-animation="animate__zoomIn">
         <Particles
           id="tsparticles"
           init={particlesInit}
@@ -1910,7 +1957,7 @@ export default function Home() {
                 value: "transparent",
               },
             },
-            fpsLimit: 120,
+            fpsLimit: 60,
             interactivity: {
               events: {
                 onHover: {
@@ -1921,8 +1968,8 @@ export default function Home() {
               },
               modes: {
                 repulse: {
-                  distance: 100,
-                  duration: 0.4,
+                  distance: 80,
+                  duration: 0.3,
                 },
               },
             },
@@ -1940,21 +1987,21 @@ export default function Home() {
                   default: "out",
                 },
                 random: true,
-                speed: 0.5,
+                speed: 0.3,
                 straight: false,
               },
               number: {
                 density: {
                   enable: true,
-                  area: 800,
+                  area: 1000,
                 },
-                value: 150,
+                value: 80,
               },
               opacity: {
-                value: { min: 0.1, max: 0.8 },
+                value: { min: 0.1, max: 0.6 },
                 animation: {
                   enable: true,
-                  speed: 1,
+                  speed: 0.8,
                   minimumValue: 0.1,
                   sync: false,
                 },
@@ -1963,7 +2010,7 @@ export default function Home() {
                 type: "circle",
               },
               size: {
-                value: { min: 1, max: 4 },
+                value: { min: 1, max: 3 },
               },
             },
             detectRetina: true,
@@ -1971,26 +2018,26 @@ export default function Home() {
           className="absolute inset-0 z-0"
         />
         
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 text-center relative z-10">
+          <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-black text-white mb-3 sm:mb-4 md:mb-5 lg:mb-6 2xl:mb-6 leading-tight">
             ¿Listo para Comenzar tu Proyecto?
           </h2>
-          <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-lg lg:text-lg xl:text-xl 2xl:text-xl text-white/90 mb-8 sm:mb-10 md:mb-12 lg:mb-12 2xl:mb-12 max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl 2xl:max-w-3xl mx-auto px-2">
             Conversemos sobre tus ideas y hagamos realidad el proyecto de tus sueños. 
             Nuestro equipo de expertos está listo para asesorarte.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="group bg-white hover:bg-gray-100 text-[#9A1D25] font-bold py-5 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-5 lg:gap-6 2xl:gap-6 justify-center px-2">
+            <button className="group bg-white hover:bg-gray-100 text-[#9A1D25] font-bold py-3 px-6 sm:py-4 sm:px-8 md:py-3 md:px-7 lg:py-4 lg:px-9 xl:py-5 xl:px-10 2xl:py-5 2xl:px-10 rounded-lg sm:rounded-xl md:rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl text-sm sm:text-base md:text-sm lg:text-sm xl:text-base">
               <span className="flex items-center gap-2 justify-center">
                 Solicitar Cotización Gratis
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
             </button>
-            <button className="group border-2 border-white text-white hover:bg-white/10 font-bold py-5 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+            <button className="group border-2 border-white text-white hover:bg-white/10 font-bold py-3 px-6 sm:py-4 sm:px-8 md:py-3 md:px-7 lg:py-4 lg:px-9 xl:py-5 xl:px-10 2xl:py-5 2xl:px-10 rounded-lg sm:rounded-xl md:rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm text-sm sm:text-base md:text-sm lg:text-sm xl:text-base">
               <span className="flex items-center gap-2 justify-center">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 Llamar Ahora
