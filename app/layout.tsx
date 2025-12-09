@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import "animate.css";
 import Header from "../components/Header";
@@ -14,8 +15,58 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Conarte - Arte y Cultura",
-  description: "Transformando espacios con arte y cultura",
+  title: "Conarte - Construcción y Desarrollo Urbano",
+  description: "Construcción y desarrollo urbano con excelencia, transparencia y competitividad en Puebla, México",
+  authors: [{ name: "Conarte" }],
+  creator: "Conarte",
+  publisher: "Conarte",
+  metadataBase: new URL('https://conarte.com'),
+  alternates: {
+    canonical: '/',
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" }
+  ],
+  viewport: "width=device-width, initial-scale=1",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  openGraph: {
+    title: "Conarte - Construcción y Desarrollo Urbano",
+    description: "Construcción y desarrollo urbano con excelencia, transparencia y competitividad",
+    url: "https://conarte.com",
+    siteName: "Conarte",
+    locale: "es_MX",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Conarte - Construcción y Desarrollo Urbano",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Conarte - Construcción y Desarrollo Urbano",
+    description: "Construcción y desarrollo urbano con excelencia, transparencia y competitividad",
+    images: ["/images/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -29,6 +80,25 @@ export default function RootLayout({
         className={`${nunitoSans.variable} antialiased flex flex-col min-h-screen font-sans`}
         style={{ fontFamily: 'var(--font-nunito-sans)' }}
       >
+        <Script
+          id="google-tag-manager"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MQN9GZFS');`,
+          }}
+        />
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MQN9GZFS"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <Header />
         <main className="grow">
           {children}

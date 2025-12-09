@@ -7,9 +7,9 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-linear-to-b dark:from-gray-900 dark:to-black text-gray-900 dark:text-white border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid-cols-1 md:grid-cols-3 gap-8 mb-8 justify-between md:flex">
           {/* Logo y descripción */}
-          <div>
+          <div className='xl:max-w-1/3 lg:w-1/3 md:w-1/2 mx-5 md:mx-0'>
             <Link href="/" className="flex items-center gap-2">
               <Image 
                 src="/images/conarte-logo.png" 
@@ -17,15 +17,15 @@ export default function Footer() {
                 loading="eager"
                 width={120}
                 height={120}
-                className="object-contain lg:w-16 lg:h-16 xl:w-16 xl:h-16 2xl:w-[120px] 2xl:h-[120px]"
+                className="object-contain lg:w-32 xl:w-40 xl:h-20 2xl:w-52 2xl:h-40"
               />
             </Link>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed 2xl:-mt-10 lg:mt-5 mt-4">
               Construcción y desarrollo urbano con excelencia, transparencia y competitividad.
             </p>
 
             {/* Redes sociales */}
-            <div className="mt-6">
+            <div className="mt-6 hidden">
               <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-500 uppercase tracking-wider mb-3">Síguenos</h3>
               <div className="flex gap-3">
                 <a href="#" className="w-10 h-10 bg-gray-200 dark:bg-gray-800/50 hover:bg-linear-to-r hover:from-[#9A1D25] hover:to-[#C02530] text-gray-700 dark:text-white hover:text-white rounded-full flex items-center justify-center transition-all hover:scale-110">
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
 
           {/* Contacto */}
-          <div>
+          <div className='lg:w-1/3 md:w-1/2 mt-10 mx-5 md:mx-0 md:mt-0'>
             <h3 className="text-xs font-semibold text-gray-700 dark:text-gray-500 uppercase tracking-wider mb-4">Contacto</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
@@ -94,8 +94,8 @@ export default function Footer() {
         {/* Footer bottom */}
         <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-600 dark:text-gray-500">
-              © {currentYear} <span className="font-semibold text-gray-900 dark:text-white">Conarte</span>. Todos los derechos reservados.
+            <p className="text-sm text-gray-600 dark:text-gray-500 text-center md:text-start">
+              © {currentYear} <span className="font-extrabold text-[#9A1D25] dark:text-white">Conarte</span>. Todos los derechos reservados.
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="/privacy" className="text-gray-600 dark:text-gray-500 hover:text-[#9A1D25] transition-colors">
@@ -108,10 +108,31 @@ export default function Footer() {
                 Cookies
               </a>
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-500">
-              Designed by <span className="text-transparent bg-clip-text bg-linear-to-r from-[#9A1D25] to-[#C02530] font-semibold">Gerardo Rufino</span>
+            <p className="text-base mt-5 text-gray-600 dark:text-gray-500 md:hidden">
+              Designed by{' '}
+              <a 
+                href="https://www.linkedin.com/in/gerardorufino" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative text-[#47D8FA] font-semibold hover:text-[#47D8FA]/80 transition-all duration-300 hover:scale-110 inline-block pb-1"
+              >
+                Gerardo Rufino
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#47D8FA] origin-left scale-x-0 animate-[drawLine_2s_ease-in-out_infinite]"></span>
+              </a>
             </p>
           </div>
+          <p className="text-base text-gray-600 dark:text-gray-500 hidden md:block text-center mt-10">
+              Designed by{' '}
+              <a 
+                href="https://www.linkedin.com/in/gerardorufino" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative text-[#47D8FA] font-semibold hover:text-[#47D8FA]/80 transition-all duration-300 hover:scale-110 inline-block pb-1"
+              >
+                Gerardo Rufino
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#47D8FA] origin-left scale-x-0 animate-[drawLine_2s_ease-in-out_infinite]"></span>
+              </a>
+            </p>
         </div>
       </div>
     </footer>

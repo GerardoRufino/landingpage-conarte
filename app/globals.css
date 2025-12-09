@@ -198,3 +198,13 @@ body {
   opacity: 1;
   visibility: visible;
 }
+
+/* Animación de línea que se dibuja */
+@keyframes drawLine {
+  0%, 100% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+}

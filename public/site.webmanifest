@@ -1,0 +1,21 @@
+{
+    "name": "Conarte - Construcción y Desarrollo Urbano",
+    "short_name": "Conarte",
+    "description": "Construcción y desarrollo urbano con excelencia, transparencia y competitividad",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#9A1D25",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
