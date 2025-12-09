@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Conarte" }],
   creator: "Conarte",
   publisher: "Conarte",
-  metadataBase: new URL('https://conarte.com'),
+  metadataBase: new URL('https://www.conarte.site'),
   alternates: {
     canonical: '/',
   },
@@ -30,20 +30,20 @@ export const metadata: Metadata = {
   ],
   viewport: "width=device-width, initial-scale=1",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
   openGraph: {
     title: "Conarte - Construcción y Desarrollo Urbano",
     description: "Construcción y desarrollo urbano con excelencia, transparencia y competitividad",
-    url: "https://conarte.com",
+    url: "https://www.conarte.site",
     siteName: "Conarte",
     locale: "es_MX",
     type: "website",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Conarte - Construcción y Desarrollo Urbano",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Conarte - Construcción y Desarrollo Urbano",
     description: "Construcción y desarrollo urbano con excelencia, transparencia y competitividad",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/og-image.png"],
   },
   robots: {
     index: true,
