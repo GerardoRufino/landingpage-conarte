@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import "animate.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import DevBreakpointIndicator from "../components/DevBreakpointIndicator";
+import FirebaseAnalytics from "../components/FirebaseAnalytics";
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -105,6 +107,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </main>
         <Footer />
         <DevBreakpointIndicator />
+        <FirebaseAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   );
